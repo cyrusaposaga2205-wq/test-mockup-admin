@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08356f">
+
+    <title>Bookings | Uncle Ron's Travel and Tours</title>
+
+    <link rel="stylesheet" href="css/bookings.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+
+        <div class="sidebar-logo">
+            <img src="images/logo.png" alt="Uncle Ron's Travel and Tours">
+            <h3>UNCLE RON'S</h3>
+            <span>TRAVEL AND TOURS</span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-link">
+                <span class="icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="tour-packages.html" class="nav-link">
+                <span class="icon"><i data-lucide="package" aria-hidden="true"></i></span>
+                <span>Tour Packages</span>
+            </a>
+
+            <a href="bookings.html" class="nav-link active" aria-current="page">
+                <span class="icon"><i data-lucide="calendar-check" aria-hidden="true"></i></span>
+                <span>Bookings</span>
+                <span class="nav-badge" id="bookingsBadge">8</span>
+            </a>
+
+            <a href="customers.html" class="nav-link">
+                <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
+                <span>Customers</span>
+            </a>
+
+            <a href="reviews.html" class="nav-link">
+                <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
+                <span>Reviews</span>
+                <span class="nav-badge">3</span>
+            </a>
+
+            <a href="photos.html" class="nav-link">
+                <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
+                <span>Photos</span>
+            </a>
+
+            <a href="staff-accounts.html" class="nav-link">
+               <span class="icon"><i data-lucide="user-round" aria-hidden="true"></i></span>
+               <span>Staff Accounts</span>
+            </a>
+
+            <a href="reports.html" class="nav-link">
+                <span class="icon"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i></span>
+                <span>Reports</span>
+            </a>
+
+            <a href="settings.html" class="nav-link">
+                <span class="icon"><i data-lucide="settings" aria-hidden="true"></i></span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="admin-mini">
+                <div class="admin-avatar" aria-hidden="true">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>System Admin</small>
+                </div>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                <span class="logout-icon" aria-hidden="true">⇥</span>
+                <span class="logout-label">Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu" type="button"
+                aria-label="Hide sidebar" aria-controls="sidebar" aria-expanded="true">
+                <i data-lucide="menu" aria-hidden="true"></i>
+            </button>
+
+
+            <div class="search-container">
+                <span class="search-icon" aria-hidden="true">
+                    <i data-lucide="search"></i>
+                </span>
+                <input type="search" id="globalSearch"
+                    placeholder="Search bookings by ID, customer, package..."
+                    aria-label="Search bookings" autocomplete="off">
+                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-button" id="notificationButton" type="button"
+                    aria-label="Notifications (3 new)">
+                    <i data-lucide="bell" aria-hidden="true"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <button class="admin-profile" id="adminProfileButton" type="button"
+                    aria-haspopup="true" aria-expanded="false">
+                    <div class="admin-avatar" aria-hidden="true">A</div>
+                    <div class="admin-profile-info">
+                        <strong>Administrator</strong>
+                        <small>Admin</small>
+                    </div>
+                    <i data-lucide="chevron-down" class="dropdown-arrow" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-header-text">
+
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="index.html">Dashboard</a>
+                        <i data-lucide="chevron-right" aria-hidden="true"></i>
+                        <span>Bookings</span>
+                    </nav>
+
+                    <h1>Bookings</h1>
+
+                    <p>Manage all customer reservations, payments, and tour assignments.</p>
+
+                </div>
+
+
+                <div class="page-header-actions">
+
+                    <button class="secondary-button" id="exportBookingsButton" type="button">
+                        <i data-lucide="download" aria-hidden="true"></i>
+                        Export
+                    </button>
+
+                    <button class="primary-button" id="addBookingButton" type="button">
+                        <i data-lucide="plus" aria-hidden="true"></i>
+                        New Booking
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- MINI STATS -->
+
+            <section class="mini-stats" aria-label="Booking statistics">
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon blue" aria-hidden="true">
+                        <i data-lucide="clipboard-list"></i>
+                    </div>
+                    <div>
+                        <span>Total Bookings</span>
+                        <strong id="statTotal">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon yellow" aria-hidden="true">
+                        <i data-lucide="clock-3"></i>
+                    </div>
+                    <div>
+                        <span>Pending</span>
+                        <strong id="statPending">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon green" aria-hidden="true">
+                        <i data-lucide="check-circle-2"></i>
+                    </div>
+                    <div>
+                        <span>Confirmed</span>
+                        <strong id="statConfirmed">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon purple" aria-hidden="true">
+                        <i data-lucide="check-check"></i>
+                    </div>
+                    <div>
+                        <span>Completed</span>
+                        <strong id="statCompleted">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- TOOLBAR -->
+
+            <section class="toolbar">
+
+                <div class="toolbar-left">
+
+                    <div class="filter-tabs" role="tablist" aria-label="Booking status filter">
+
+                        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+                            All
+                            <span class="tab-count" id="countAll">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="pending" role="tab" aria-selected="false">
+                            Pending
+                            <span class="tab-count" id="countPending">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="confirmed" role="tab" aria-selected="false">
+                            Confirmed
+                            <span class="tab-count" id="countConfirmed">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="completed" role="tab" aria-selected="false">
+                            Completed
+                            <span class="tab-count" id="countCompleted">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="cancelled" role="tab" aria-selected="false">
+                            Cancelled
+                            <span class="tab-count" id="countCancelled">0</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="toolbar-right">
+
+                    <div class="sort-select-wrap">
+                        <i data-lucide="arrow-up-down" aria-hidden="true"></i>
+                        <select id="sortSelect" aria-label="Sort bookings">
+                            <option value="newest">Newest first</option>
+                            <option value="oldest">Oldest first</option>
+                            <option value="tour-date">Tour date (soonest)</option>
+                            <option value="amount-high">Amount: High to Low</option>
+                            <option value="amount-low">Amount: Low to High</option>
+                            <option value="customer">Customer A → Z</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BULK BAR -->
+
+            <div class="bulk-bar" id="bulkBar" hidden>
+
+                <span class="bulk-info">
+                    <strong id="bulkCount">0</strong> selected
+                </span>
+
+                <div class="bulk-actions">
+
+                    <button class="bulk-button" data-bulk-action="confirm">
+                        <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                        Confirm
+                    </button>
+
+                    <button class="bulk-button" data-bulk-action="complete">
+                        <i data-lucide="check-check" aria-hidden="true"></i>
+                        Complete
+                    </button>
+
+                    <button class="bulk-button danger" data-bulk-action="cancel">
+                        <i data-lucide="x-circle" aria-hidden="true"></i>
+                        Cancel
+                    </button>
+
+                    <button class="bulk-button subtle" data-bulk-action="clear">
+                        Clear
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOOKINGS TABLE -->
+
+            <section class="dashboard-card">
+
+                <div class="table-wrapper">
+
+                    <table class="data-table" id="bookingsTable">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;">
+                                    <input type="checkbox" id="selectAllBookings" aria-label="Select all bookings">
+                                </th>
+                                <th>Booking ID</th>
+                                <th>Customer</th>
+                                <th>Package</th>
+                                <th>Tour Date</th>
+                                <th>Pax</th>
+                                <th>Amount</th>
+                                <th>Guide</th>
+                                <th>Status</th>
+                                <th class="th-actions">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="bookingsBody">
+
+
+                            <tr
+                                data-id="BK-001248"
+                                data-status="confirmed"
+                                data-amount="20392"
+                                data-pax="4"
+                                data-created="2026-09-28"
+                                data-tour-date="2026-10-05"
+                                data-customer="Maria Santos"
+                                data-package="3D2N Cebu Tour"
+                                data-guide="Patrick Reyes"
+                                data-paid="20392">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001248"></td>
+                                <td><strong>BK-001248</strong></td>
+                                <td>Maria Santos</td>
+                                <td>3D2N Cebu Tour</td>
+                                <td>Oct 05, 2026</td>
+                                <td>4</td>
+                                <td>₱20,392</td>
+                                <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Patrick</span></td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="BK-001247"
+                                data-status="pending"
+                                data-amount="45588"
+                                data-pax="6"
+                                data-created="2026-09-27"
+                                data-tour-date="2026-10-08"
+                                data-customer="John Dela Cruz"
+                                data-package="4D3N Cebu-Bohol"
+                                data-guide=""
+                                data-paid="10000">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001247"></td>
+                                <td><strong>BK-001247</strong></td>
+                                <td>John Dela Cruz</td>
+                                <td>4D3N Cebu-Bohol</td>
+                                <td>Oct 08, 2026</td>
+                                <td>6</td>
+                                <td>₱45,588</td>
+                                <td><span class="guide-tag empty">Unassigned</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="BK-001246"
+                                data-status="confirmed"
+                                data-amount="25490"
+                                data-pax="5"
+                                data-created="2026-09-26"
+                                data-tour-date="2026-10-12"
+                                data-customer="Ana Reyes"
+                                data-package="Moalboal-Badian"
+                                data-guide="Rico Mendoza"
+                                data-paid="25490">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001246"></td>
+                                <td><strong>BK-001246</strong></td>
+                                <td>Ana Reyes</td>
+                                <td>Moalboal-Badian</td>
+                                <td>Oct 12, 2026</td>
+                                <td>5</td>
+                                <td>₱25,490</td>
+                                <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Rico</span></td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="BK-001245"
+                                data-status="completed"
+                                data-amount="15294"
+                                data-pax="3"
+                                data-created="2026-09-24"
+                                data-tour-date="2026-10-15"
+                                data-customer="Claire Tan"
+                                data-package="Oslob-Simala"
+                                data-guide="Carlo Diaz"
+                                data-paid="15294">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001245"></td>
+                                <td><strong>BK-001245</strong></td>
+                                <td>Claire Tan</td>
+                                <td>Oslob-Simala</td>
+                                <td>Oct 15, 2026</td>
+                                <td>3</td>
+                                <td>₱15,294</td>
+                                <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Carlo</span></td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="BK-001244"
+                                data-status="pending"
+                                data-amount="3500"
+                                data-pax="1"
+                                data-created="2026-09-23"
+                                data-tour-date="2026-10-18"
+                                data-customer="Mark Villanueva"
+                                data-package="Moalboal-Badian"
+                                data-guide=""
+                                data-paid="0">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001244"></td>
+                                <td><strong>BK-001244</strong></td>
+                                <td>Mark Villanueva</td>
+                                <td>Moalboal-Badian</td>
+                                <td>Oct 18, 2026</td>
+                                <td>1</td>
+                                <td>₱3,500</td>
+                                <td><span class="guide-tag empty">Unassigned</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="BK-001243"
+                                data-status="cancelled"
+                                data-amount="15196"
+                                data-pax="2"
+                                data-created="2026-09-21"
+                                data-tour-date="2026-10-20"
+                                data-customer="Sophia Lim"
+                                data-package="4D3N Cebu-Bohol"
+                                data-guide=""
+                                data-paid="0">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001243"></td>
+                                <td><strong>BK-001243</strong></td>
+                                <td>Sophia Lim</td>
+                                <td>4D3N Cebu-Bohol</td>
+                                <td>Oct 20, 2026</td>
+                                <td>2</td>
+                                <td>₱15,196</td>
+                                <td><span class="guide-tag empty">—</span></td>
+                                <td><span class="status cancelled">Cancelled</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="BK-001242"
+                                data-status="confirmed"
+                                data-amount="25490"
+                                data-pax="5"
+                                data-created="2026-09-20"
+                                data-tour-date="2026-10-22"
+                                data-customer="Daniel Ortiz"
+                                data-package="Oslob-Simala"
+                                data-guide="Patrick Reyes"
+                                data-paid="25490">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001242"></td>
+                                <td><strong>BK-001242</strong></td>
+                                <td>Daniel Ortiz</td>
+                                <td>Oslob-Simala</td>
+                                <td>Oct 22, 2026</td>
+                                <td>5</td>
+                                <td>₱25,490</td>
+                                <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Patrick</span></td>
+                                <td><span class="status confirmed">Confirmed</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="BK-001241"
+                                data-status="completed"
+                                data-amount="20392"
+                                data-pax="4"
+                                data-created="2026-09-18"
+                                data-tour-date="2026-10-25"
+                                data-customer="Grace Bautista"
+                                data-package="3D2N Cebu Tour"
+                                data-guide="Lisa Fernandez"
+                                data-paid="20392">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select BK-001241"></td>
+                                <td><strong>BK-001241</strong></td>
+                                <td>Grace Bautista</td>
+                                <td>3D2N Cebu Tour</td>
+                                <td>Oct 25, 2026</td>
+                                <td>4</td>
+                                <td>₱20,392</td>
+                                <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Lisa</span></td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-state" id="emptyState" hidden>
+                    <i data-lucide="calendar-x" aria-hidden="true"></i>
+                    <h3>No bookings found</h3>
+                    <p>Try a different filter or search keyword.</p>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+
+    <!-- =========================
+         BOOKING DETAIL MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="bookingModal" hidden>
+
+        <div class="modal modal-lg" role="dialog" aria-labelledby="bookingModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="bookingModalTitle">
+                        Booking <span id="modalBookingId" class="modal-id">BK-000000</span>
+                    </h2>
+                    <p id="modalBookingSubtitle">Loading details...</p>
+                </div>
+
+                <button class="modal-close" id="bookingModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body modal-body-scroll">
+
+                <!-- Status strip -->
+
+                <div class="status-strip" id="statusStrip">
+
+                    <button class="status-pill active" data-status="pending">
+                        <i data-lucide="clock-3" aria-hidden="true"></i>
+                        Pending
+                    </button>
+
+                    <button class="status-pill" data-status="confirmed">
+                        <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                        Confirmed
+                    </button>
+
+                    <button class="status-pill" data-status="completed">
+                        <i data-lucide="check-check" aria-hidden="true"></i>
+                        Completed
+                    </button>
+
+                    <button class="status-pill" data-status="cancelled">
+                        <i data-lucide="x-circle" aria-hidden="true"></i>
+                        Cancelled
+                    </button>
+
+                </div>
+
+
+                <!-- Booking info grid -->
+
+                <div class="detail-grid">
+
+                    <div class="detail-block">
+                        <h4>
+                            <i data-lucide="user-round" aria-hidden="true"></i>
+                            Customer
+                        </h4>
+                        <div class="detail-row">
+                            <span>Name</span>
+                            <strong id="detailCustomer">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Email</span>
+                            <strong id="detailEmail">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Phone</span>
+                            <strong id="detailPhone">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Location</span>
+                            <strong id="detailLocation">—</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="detail-block">
+                        <h4>
+                            <i data-lucide="package" aria-hidden="true"></i>
+                            Package
+                        </h4>
+                        <div class="detail-row">
+                            <span>Tour</span>
+                            <strong id="detailPackage">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Tour Date</span>
+                            <strong id="detailTourDate">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Duration</span>
+                            <strong id="detailDuration">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Pax</span>
+                            <strong id="detailPax">—</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="detail-block">
+                        <h4>
+                            <i data-lucide="wallet" aria-hidden="true"></i>
+                            Payment
+                        </h4>
+                        <div class="detail-row">
+                            <span>Total Amount</span>
+                            <strong id="detailAmount">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Paid</span>
+                            <strong id="detailPaid" class="green-text">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Balance</span>
+                            <strong id="detailBalance" class="red-text">—</strong>
+                        </div>
+
+                        <div class="payment-progress">
+                            <div class="payment-progress-fill" id="paymentProgressFill" style="width: 0%"></div>
+                        </div>
+                        <small class="payment-hint" id="paymentHint">—</small>
+                    </div>
+
+
+                    <div class="detail-block">
+                        <h4>
+                            <i data-lucide="user-cog" aria-hidden="true"></i>
+                            Assigned Guide
+                        </h4>
+
+                        <div class="guide-assign">
+
+                            <select id="guideSelect" aria-label="Assign tour guide">
+                                <option value="">— Unassigned —</option>
+                                <option value="Patrick Reyes">Patrick Reyes</option>
+                                <option value="Rico Mendoza">Rico Mendoza</option>
+                                <option value="Carlo Diaz">Carlo Diaz</option>
+                                <option value="Lisa Fernandez">Lisa Fernandez</option>
+                            </select>
+
+                            <button class="secondary-button" id="assignGuideButton" type="button">
+                                <i data-lucide="check" aria-hidden="true"></i>
+                                Assign
+                            </button>
+
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Current</span>
+                            <strong id="detailGuide">Unassigned</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Timeline -->
+
+                <div class="detail-block full-width">
+
+                    <h4>
+                        <i data-lucide="activity" aria-hidden="true"></i>
+                        Booking Timeline
+                    </h4>
+
+                    <ul class="timeline" id="bookingTimeline">
+                        <!-- populated by JS -->
+                    </ul>
+
+                </div>
+
+
+                <!-- Notes -->
+
+                <div class="detail-block full-width">
+
+                    <h4>
+                        <i data-lucide="message-square" aria-hidden="true"></i>
+                        Notes
+                    </h4>
+
+                    <textarea
+                        id="bookingNotes"
+                        rows="3"
+                        placeholder="Add a note about this booking..."></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer modal-footer-wrap">
+
+                <div class="modal-footer-left">
+
+                    <button class="secondary-button" id="printInvoiceButton" type="button">
+                        <i data-lucide="printer" aria-hidden="true"></i>
+                        Print Invoice
+                    </button>
+
+                    <button class="secondary-button" id="sendEmailButton" type="button">
+                        <i data-lucide="mail" aria-hidden="true"></i>
+                        Email Customer
+                    </button>
+
+                </div>
+
+                <div class="modal-footer-right">
+
+                    <button class="secondary-button" id="modalCancelButton" type="button">
+                        Close
+                    </button>
+
+                    <button class="primary-button" id="modalSaveButton" type="button">
+                        <i data-lucide="save" aria-hidden="true"></i>
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE CONFIRM MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="deleteModal" hidden>
+
+        <div class="modal modal-sm" role="dialog" aria-labelledby="deleteModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="deleteModalTitle">Delete Booking?</h2>
+                    <p>This action cannot be undone.</p>
+                </div>
+                <button class="modal-close" id="deleteModalClose" type="button" aria-label="Close">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="confirm-block">
+
+                    <div class="confirm-icon danger" aria-hidden="true">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+
+                    <div class="confirm-text">
+                        <strong id="deleteBookingName">BK-000000</strong>
+                        <p>will be permanently deleted. This cannot be undone.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="secondary-button" id="deleteCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="danger-button" id="deleteConfirmButton" type="button">
+                    <i data-lucide="trash-2" aria-hidden="true"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/bookings.js"></script>
+
+</body>
+</html>

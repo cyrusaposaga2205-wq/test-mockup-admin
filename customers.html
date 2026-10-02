@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08356f">
+
+    <title>Customers | Uncle Ron's Travel and Tours</title>
+
+    <link rel="stylesheet" href="css/customers.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+
+        <div class="sidebar-logo">
+            <img src="images/logo.png" alt="Uncle Ron's Travel and Tours">
+            <h3>UNCLE RON'S</h3>
+            <span>TRAVEL AND TOURS</span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-link">
+                <span class="icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="tour-packages.html" class="nav-link">
+                <span class="icon"><i data-lucide="package" aria-hidden="true"></i></span>
+                <span>Tour Packages</span>
+            </a>
+
+            <a href="bookings.html" class="nav-link">
+                <span class="icon"><i data-lucide="calendar-check" aria-hidden="true"></i></span>
+                <span>Bookings</span>
+                <span class="nav-badge">8</span>
+            </a>
+
+            <a href="customers.html" class="nav-link active" aria-current="page">
+                <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
+                <span>Customers</span>
+            </a>
+
+            <a href="reviews.html" class="nav-link">
+                <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
+                <span>Reviews</span>
+                <span class="nav-badge">3</span>
+            </a>
+
+            <a href="photos.html" class="nav-link">
+                <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
+                <span>Photos</span>
+            </a>
+
+            <a href="staff-accounts.html" class="nav-link">
+                <span class="icon"><i data-lucide="user-round" aria-hidden="true"></i></span>
+                <span>Staff Accounts</span>
+            </a>
+
+            <a href="reports.html" class="nav-link">
+                <span class="icon"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i></span>
+                <span>Reports</span>
+            </a>
+
+            <a href="settings.html" class="nav-link">
+                <span class="icon"><i data-lucide="settings" aria-hidden="true"></i></span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="admin-mini">
+                <div class="admin-avatar" aria-hidden="true">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>System Admin</small>
+                </div>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                <span class="logout-icon" aria-hidden="true">⇥</span>
+                <span class="logout-label">Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu" type="button"
+                aria-label="Hide sidebar" aria-controls="sidebar" aria-expanded="true">
+                <i data-lucide="menu" aria-hidden="true"></i>
+            </button>
+
+
+            <div class="search-container">
+                <span class="search-icon" aria-hidden="true">
+                    <i data-lucide="search"></i>
+                </span>
+                <input type="search" id="globalSearch"
+                    placeholder="Search customers by name, email, phone..."
+                    aria-label="Search customers" autocomplete="off">
+                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-button" id="notificationButton" type="button"
+                    aria-label="Notifications (3 new)">
+                    <i data-lucide="bell" aria-hidden="true"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <button class="admin-profile" id="adminProfileButton" type="button"
+                    aria-haspopup="true" aria-expanded="false">
+                    <div class="admin-avatar" aria-hidden="true">A</div>
+                    <div class="admin-profile-info">
+                        <strong>Administrator</strong>
+                        <small>Admin</small>
+                    </div>
+                    <i data-lucide="chevron-down" class="dropdown-arrow" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-header-text">
+
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="index.html">Dashboard</a>
+                        <i data-lucide="chevron-right" aria-hidden="true"></i>
+                        <span>Customers</span>
+                    </nav>
+
+                    <h1>Customers</h1>
+
+                    <p>View and manage all registered customers and their booking history.</p>
+
+                </div>
+
+
+                <div class="page-header-actions">
+
+                    <button class="secondary-button" id="exportCustomersButton" type="button">
+                        <i data-lucide="download" aria-hidden="true"></i>
+                        Export
+                    </button>
+
+                    <button class="primary-button" id="addCustomerButton" type="button">
+                        <i data-lucide="user-round-plus" aria-hidden="true"></i>
+                        Add Customer
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- MINI STATS -->
+
+            <section class="mini-stats" aria-label="Customer statistics">
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon blue" aria-hidden="true">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div>
+                        <span>Total Customers</span>
+                        <strong id="statTotal">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon green" aria-hidden="true">
+                        <i data-lucide="user-check"></i>
+                    </div>
+                    <div>
+                        <span>Returning</span>
+                        <strong id="statReturning">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon yellow" aria-hidden="true">
+                        <i data-lucide="user-plus"></i>
+                    </div>
+                    <div>
+                        <span>New This Month</span>
+                        <strong id="statNew">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon purple" aria-hidden="true">
+                        <i data-lucide="crown"></i>
+                    </div>
+                    <div>
+                        <span>VIP</span>
+                        <strong id="statVip">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- TOOLBAR -->
+
+            <section class="toolbar">
+
+                <div class="toolbar-left">
+
+                    <div class="filter-tabs" role="tablist" aria-label="Customer status filter">
+
+                        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+                            All
+                            <span class="tab-count" id="countAll">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="new" role="tab" aria-selected="false">
+                            New
+                            <span class="tab-count" id="countNew">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="returning" role="tab" aria-selected="false">
+                            Returning
+                            <span class="tab-count" id="countReturning">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="vip" role="tab" aria-selected="false">
+                            VIP
+                            <span class="tab-count" id="countVip">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="inactive" role="tab" aria-selected="false">
+                            Inactive
+                            <span class="tab-count" id="countInactive">0</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="toolbar-right">
+
+                    <div class="sort-select-wrap">
+                        <i data-lucide="arrow-up-down" aria-hidden="true"></i>
+                        <select id="sortSelect" aria-label="Sort customers">
+                            <option value="newest">Newest first</option>
+                            <option value="oldest">Oldest first</option>
+                            <option value="name-asc">Name: A → Z</option>
+                            <option value="name-desc">Name: Z → A</option>
+                            <option value="spend-high">Highest spend</option>
+                            <option value="bookings-high">Most bookings</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BULK BAR -->
+
+            <div class="bulk-bar" id="bulkBar" hidden>
+
+                <span class="bulk-info">
+                    <strong id="bulkCount">0</strong> selected
+                </span>
+
+                <div class="bulk-actions">
+
+                    <button class="bulk-button" data-bulk-action="email">
+                        <i data-lucide="mail" aria-hidden="true"></i>
+                        Email
+                    </button>
+
+                    <button class="bulk-button" data-bulk-action="vip">
+                        <i data-lucide="crown" aria-hidden="true"></i>
+                        Mark VIP
+                    </button>
+
+                    <button class="bulk-button danger" data-bulk-action="delete">
+                        <i data-lucide="trash-2" aria-hidden="true"></i>
+                        Delete
+                    </button>
+
+                    <button class="bulk-button subtle" data-bulk-action="clear">
+                        Clear
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOMERS TABLE -->
+
+            <section class="dashboard-card">
+
+                <div class="table-wrapper">
+
+                    <table class="data-table" id="customersTable">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;">
+                                    <input type="checkbox" id="selectAllCustomers" aria-label="Select all customers">
+                                </th>
+                                <th>Customer</th>
+                                <th>Contact</th>
+                                <th>Location</th>
+                                <th>Bookings</th>
+                                <th>Total Spent</th>
+                                <th>Status</th>
+                                <th class="th-actions">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="customersBody">
+
+
+                            <tr
+                                data-id="C-001"
+                                data-status="vip"
+                                data-bookings="8"
+                                data-spent="148500"
+                                data-created="2025-04-12"
+                                data-name="Maria Santos"
+                                data-email="maria.santos@email.com"
+                                data-phone="+63 917 555 0101"
+                                data-location="Cebu City">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select Maria Santos"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">M</div>
+                                        <div>
+                                            <strong>Maria Santos</strong>
+                                            <small>maria.santos@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0101</td>
+                                <td>Cebu City</td>
+                                <td>8</td>
+                                <td>₱148,500</td>
+                                <td><span class="status vip">VIP</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="C-002"
+                                data-status="returning"
+                                data-bookings="5"
+                                data-spent="92400"
+                                data-created="2025-08-03"
+                                data-name="John Dela Cruz"
+                                data-email="john.dc@email.com"
+                                data-phone="+63 917 555 0102"
+                                data-location="Mandaue">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select John Dela Cruz"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">J</div>
+                                        <div>
+                                            <strong>John Dela Cruz</strong>
+                                            <small>john.dc@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0102</td>
+                                <td>Mandaue</td>
+                                <td>5</td>
+                                <td>₱92,400</td>
+                                <td><span class="status returning">Returning</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="C-003"
+                                data-status="new"
+                                data-bookings="1"
+                                data-spent="15294"
+                                data-created="2026-09-22"
+                                data-name="Claire Tan"
+                                data-email="claire.tan@email.com"
+                                data-phone="+63 917 555 0103"
+                                data-location="Lapu-Lapu">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select Claire Tan"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">C</div>
+                                        <div>
+                                            <strong>Claire Tan</strong>
+                                            <small>claire.tan@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0103</td>
+                                <td>Lapu-Lapu</td>
+                                <td>1</td>
+                                <td>₱15,294</td>
+                                <td><span class="status new">New</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="C-004"
+                                data-status="returning"
+                                data-bookings="3"
+                                data-spent="45780"
+                                data-created="2025-11-18"
+                                data-name="Ana Reyes"
+                                data-email="ana.reyes@email.com"
+                                data-phone="+63 917 555 0104"
+                                data-location="Talisay">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select Ana Reyes"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">A</div>
+                                        <div>
+                                            <strong>Ana Reyes</strong>
+                                            <small>ana.reyes@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0104</td>
+                                <td>Talisay</td>
+                                <td>3</td>
+                                <td>₱45,780</td>
+                                <td><span class="status returning">Returning</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="C-005"
+                                data-status="new"
+                                data-bookings="1"
+                                data-spent="3500"
+                                data-created="2026-09-25"
+                                data-name="Mark Villanueva"
+                                data-email="mark.v@email.com"
+                                data-phone="+63 917 555 0105"
+                                data-location="Cebu City">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select Mark Villanueva"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">M</div>
+                                        <div>
+                                            <strong>Mark Villanueva</strong>
+                                            <small>mark.v@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0105</td>
+                                <td>Cebu City</td>
+                                <td>1</td>
+                                <td>₱3,500</td>
+                                <td><span class="status new">New</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="C-006"
+                                data-status="inactive"
+                                data-bookings="2"
+                                data-spent="22100"
+                                data-created="2024-06-10"
+                                data-name="Sophia Lim"
+                                data-email="sophia.lim@email.com"
+                                data-phone="+63 917 555 0106"
+                                data-location="Bohol">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select Sophia Lim"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">S</div>
+                                        <div>
+                                            <strong>Sophia Lim</strong>
+                                            <small>sophia.lim@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0106</td>
+                                <td>Bohol</td>
+                                <td>2</td>
+                                <td>₱22,100</td>
+                                <td><span class="status inactive">Inactive</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="C-007"
+                                data-status="vip"
+                                data-bookings="12"
+                                data-spent="215900"
+                                data-created="2023-02-04"
+                                data-name="Daniel Ortiz"
+                                data-email="daniel.ortiz@email.com"
+                                data-phone="+63 917 555 0107"
+                                data-location="Cebu City">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select Daniel Ortiz"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">D</div>
+                                        <div>
+                                            <strong>Daniel Ortiz</strong>
+                                            <small>daniel.ortiz@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0107</td>
+                                <td>Cebu City</td>
+                                <td>12</td>
+                                <td>₱215,900</td>
+                                <td><span class="status vip">VIP</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+
+                            <tr
+                                data-id="C-008"
+                                data-status="returning"
+                                data-bookings="4"
+                                data-spent="68900"
+                                data-created="2025-09-15"
+                                data-name="Grace Bautista"
+                                data-email="grace.b@email.com"
+                                data-phone="+63 917 555 0108"
+                                data-location="Minglanilla">
+
+                                <td><input type="checkbox" class="row-select" aria-label="Select Grace Bautista"></td>
+                                <td>
+                                    <div class="customer-cell">
+                                        <div class="customer-avatar">G</div>
+                                        <div>
+                                            <strong>Grace Bautista</strong>
+                                            <small>grace.b@email.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>+63 917 555 0108</td>
+                                <td>Minglanilla</td>
+                                <td>4</td>
+                                <td>₱68,900</td>
+                                <td><span class="status returning">Returning</span></td>
+                                <td class="td-actions">
+                                    <button class="icon-button view-button" title="View details"><i data-lucide="eye"></i></button>
+                                    <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil"></i></button>
+                                    <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2"></i></button>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-state" id="emptyState" hidden>
+                    <i data-lucide="users" aria-hidden="true"></i>
+                    <h3>No customers found</h3>
+                    <p>Try a different filter or search keyword.</p>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+
+    <!-- =========================
+         CUSTOMER DETAIL MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="customerModal" hidden>
+
+        <div class="modal modal-lg" role="dialog" aria-labelledby="customerModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="customerModalTitle">
+                        Customer Profile
+                    </h2>
+                    <p id="customerModalSubtitle">Loading...</p>
+                </div>
+
+                <button class="modal-close" id="customerModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body modal-body-scroll">
+
+                <!-- Profile header -->
+
+                <div class="customer-hero">
+
+                    <div class="customer-avatar-large" id="heroAvatar">M</div>
+
+                    <div class="customer-hero-info">
+
+                        <h3 id="heroName">—</h3>
+
+                        <div class="customer-hero-meta">
+                            <span id="heroStatusBadge" class="status vip">VIP</span>
+                            <span id="heroCustomerId" class="customer-id">C-000</span>
+                        </div>
+
+                        <div class="customer-hero-actions">
+                            <button class="secondary-button" id="heroEmailButton" type="button">
+                                <i data-lucide="mail" aria-hidden="true"></i>
+                                Email
+                            </button>
+                            <button class="secondary-button" id="heroPhoneButton" type="button">
+                                <i data-lucide="phone" aria-hidden="true"></i>
+                                Call
+                            </button>
+                            <button class="secondary-button" id="heroEditButton" type="button">
+                                <i data-lucide="pencil" aria-hidden="true"></i>
+                                Edit
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                    <div class="customer-hero-stats">
+
+                        <div>
+                            <span>Total Spent</span>
+                            <strong id="heroSpent">₱0</strong>
+                        </div>
+
+                        <div>
+                            <span>Bookings</span>
+                            <strong id="heroBookings">0</strong>
+                        </div>
+
+                        <div>
+                            <span>Joined</span>
+                            <strong id="heroJoined">—</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Tabs -->
+
+                <div class="modal-tabs" role="tablist">
+
+                    <button class="modal-tab active" data-tab="overview" role="tab">
+                        <i data-lucide="user-round" aria-hidden="true"></i>
+                        Overview
+                    </button>
+
+                    <button class="modal-tab" data-tab="bookings" role="tab">
+                        <i data-lucide="calendar-check" aria-hidden="true"></i>
+                        Bookings
+                    </button>
+
+                    <button class="modal-tab" data-tab="activity" role="tab">
+                        <i data-lucide="activity" aria-hidden="true"></i>
+                        Activity
+                    </button>
+
+                </div>
+
+
+                <!-- Tab: Overview -->
+
+                <div class="modal-tab-panel active" data-panel="overview">
+
+                    <div class="detail-grid">
+
+                        <div class="detail-block">
+                            <h4>
+                                <i data-lucide="user-round" aria-hidden="true"></i>
+                                Contact Information
+                            </h4>
+
+                            <div class="detail-row">
+                                <span>Email</span>
+                                <strong id="detailEmail">—</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Phone</span>
+                                <strong id="detailPhone">—</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Location</span>
+                                <strong id="detailLocation">—</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Customer since</span>
+                                <strong id="detailSince">—</strong>
+                            </div>
+                        </div>
+
+
+                        <div class="detail-block">
+                            <h4>
+                                <i data-lucide="chart-pie" aria-hidden="true"></i>
+                                Spending Overview
+                            </h4>
+
+                            <div class="detail-row">
+                                <span>Average per booking</span>
+                                <strong id="detailAvgBooking">—</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Lifetime value</span>
+                                <strong id="detailLtv" class="green-text">—</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Preferred package</span>
+                                <strong id="detailPrefPackage">—</strong>
+                            </div>
+
+                            <div class="loyalty-bar">
+                                <div class="loyalty-bar-fill" id="loyaltyBarFill" style="width: 0%"></div>
+                            </div>
+                            <small class="loyalty-hint" id="loyaltyHint">—</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Tab: Bookings -->
+
+                <div class="modal-tab-panel" data-panel="bookings">
+
+                    <div class="detail-block full-width">
+
+                        <h4>
+                            <i data-lucide="calendar-check" aria-hidden="true"></i>
+                            Booking History
+                        </h4>
+
+                        <div class="customer-bookings" id="customerBookings">
+                            <!-- populated by JS -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Tab: Activity -->
+
+                <div class="modal-tab-panel" data-panel="activity">
+
+                    <div class="detail-block full-width">
+
+                        <h4>
+                            <i data-lucide="activity" aria-hidden="true"></i>
+                            Recent Activity
+                        </h4>
+
+                        <ul class="timeline" id="customerActivity">
+                            <!-- populated by JS -->
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer modal-footer-wrap">
+
+                <div class="modal-footer-left">
+
+                    <button class="secondary-button" id="modalArchiveButton" type="button">
+                        <i data-lucide="archive" aria-hidden="true"></i>
+                        Archive
+                    </button>
+
+                </div>
+
+                <div class="modal-footer-right">
+
+                    <button class="secondary-button" id="modalCancelButton" type="button">
+                        Close
+                    </button>
+
+                    <button class="primary-button" id="modalSaveButton" type="button">
+                        <i data-lucide="save" aria-hidden="true"></i>
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADD / EDIT CUSTOMER MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="formModal" hidden>
+
+        <div class="modal" role="dialog" aria-labelledby="formModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="formModalTitle">Add Customer</h2>
+                    <p id="formModalSubtitle">Enter the customer's details below.</p>
+                </div>
+
+                <button class="modal-close" id="formModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <form id="customerForm" novalidate>
+
+                    <input type="hidden" id="customerId">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="customerName">Full Name *</label>
+                            <input type="text" id="customerName" placeholder="e.g., Juan Dela Cruz" required>
+                            <small class="field-error" id="customerNameError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customerEmail">Email *</label>
+                            <input type="email" id="customerEmail" placeholder="name@email.com" required>
+                            <small class="field-error" id="customerEmailError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customerPhone">Phone</label>
+                            <input type="tel" id="customerPhone" placeholder="+63 9XX XXX XXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customerLocation">Location</label>
+                            <input type="text" id="customerLocation" placeholder="e.g., Cebu City">
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="customerStatus">Status</label>
+                            <select id="customerStatus">
+                                <option value="new">New</option>
+                                <option value="returning">Returning</option>
+                                <option value="vip">VIP</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="customerNotes">Notes</label>
+                            <textarea id="customerNotes" rows="3" placeholder="Any special notes about this customer..."></textarea>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button class="secondary-button" id="formCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="primary-button" id="formSaveButton" type="button">
+                    <i data-lucide="save" aria-hidden="true"></i>
+                    <span id="formSaveLabel">Save Customer</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE CONFIRM MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="deleteModal" hidden>
+
+        <div class="modal modal-sm" role="dialog" aria-labelledby="deleteModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="deleteModalTitle">Delete Customer?</h2>
+                    <p>This action cannot be undone.</p>
+                </div>
+                <button class="modal-close" id="deleteModalClose" type="button" aria-label="Close">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="confirm-block">
+
+                    <div class="confirm-icon danger" aria-hidden="true">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+
+                    <div class="confirm-text">
+                        <strong id="deleteCustomerName">Customer</strong>
+                        <p>and all associated records will be permanently deleted. This cannot be undone.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="secondary-button" id="deleteCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="danger-button" id="deleteConfirmButton" type="button">
+                    <i data-lucide="trash-2" aria-hidden="true"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/customers.js"></script>
+
+</body>
+</html>

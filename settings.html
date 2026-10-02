@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08356f">
+
+    <title>Settings | Uncle Ron's Travel and Tours</title>
+
+    <link rel="stylesheet" href="css/settings.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+
+        <div class="sidebar-logo">
+            <img src="images/logo.png" alt="Uncle Ron's Travel and Tours">
+            <h3>UNCLE RON'S</h3>
+            <span>TRAVEL AND TOURS</span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-link">
+                <span class="icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="tour-packages.html" class="nav-link">
+                <span class="icon"><i data-lucide="package" aria-hidden="true"></i></span>
+                <span>Tour Packages</span>
+            </a>
+
+            <a href="bookings.html" class="nav-link">
+                <span class="icon"><i data-lucide="calendar-check" aria-hidden="true"></i></span>
+                <span>Bookings</span>
+                <span class="nav-badge">8</span>
+            </a>
+
+            <a href="customers.html" class="nav-link">
+                <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
+                <span>Customers</span>
+            </a>
+
+            <a href="reviews.html" class="nav-link">
+                <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
+                <span>Reviews</span>
+                <span class="nav-badge">6</span>
+            </a>
+
+            <a href="photos.html" class="nav-link">
+                <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
+                <span>Photos</span>
+            </a>
+
+            <a href="staff-accounts.html" class="nav-link">
+                <span class="icon"><i data-lucide="user-round" aria-hidden="true"></i></span>
+                <span>Staff Accounts</span>
+            </a>
+            <a href="reports.html" class="nav-link">
+                <span class="icon"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i></span>
+                <span>Reports</span>
+            </a>
+
+            <a href="settings.html" class="nav-link active" aria-current="page">
+                <span class="icon"><i data-lucide="settings" aria-hidden="true"></i></span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="admin-mini">
+                <div class="admin-avatar" aria-hidden="true">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>System Admin</small>
+                </div>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                <span class="logout-icon" aria-hidden="true">⇥</span>
+                <span class="logout-label">Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu" type="button"
+                aria-label="Hide sidebar" aria-controls="sidebar" aria-expanded="true">
+                <i data-lucide="menu" aria-hidden="true"></i>
+            </button>
+
+
+            <div class="search-container">
+                <span class="search-icon" aria-hidden="true">
+                    <i data-lucide="search"></i>
+                </span>
+                <input type="search" id="globalSearch"
+                    placeholder="Search settings..."
+                    aria-label="Search settings" autocomplete="off">
+                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-button" id="notificationButton" type="button"
+                    aria-label="Notifications (3 new)">
+                    <i data-lucide="bell" aria-hidden="true"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <button class="admin-profile" id="adminProfileButton" type="button"
+                    aria-haspopup="true" aria-expanded="false">
+                    <div class="admin-avatar" aria-hidden="true">A</div>
+                    <div class="admin-profile-info">
+                        <strong>Administrator</strong>
+                        <small>Admin</small>
+                    </div>
+                    <i data-lucide="chevron-down" class="dropdown-arrow" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-header-text">
+
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="index.html">Dashboard</a>
+                        <i data-lucide="chevron-right" aria-hidden="true"></i>
+                        <span>Settings</span>
+                    </nav>
+
+                    <h1>Settings</h1>
+
+                    <p>Manage your account, business information, and system preferences.</p>
+
+                </div>
+
+
+                <div class="page-header-actions">
+
+                    <button class="secondary-button" id="resetSettingsButton" type="button">
+                        <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+                        Reset
+                    </button>
+
+                    <button class="primary-button" id="saveAllButton" type="button">
+                        <i data-lucide="save" aria-hidden="true"></i>
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS LAYOUT -->
+
+            <section class="settings-layout">
+
+
+                <!-- SETTINGS NAV -->
+
+                <aside class="settings-nav" aria-label="Settings sections">
+
+                    <button class="settings-nav-item active" data-section="profile" type="button">
+                        <i data-lucide="user-round" aria-hidden="true"></i>
+                        <span>Profile</span>
+                    </button>
+
+                    <button class="settings-nav-item" data-section="business" type="button">
+                        <i data-lucide="building-2" aria-hidden="true"></i>
+                        <span>Business Info</span>
+                    </button>
+
+                    <button class="settings-nav-item" data-section="notifications" type="button">
+                        <i data-lucide="bell" aria-hidden="true"></i>
+                        <span>Notifications</span>
+                    </button>
+
+                    <button class="settings-nav-item" data-section="security" type="button">
+                        <i data-lucide="shield-check" aria-hidden="true"></i>
+                        <span>Security</span>
+                    </button>
+
+                    <button class="settings-nav-item" data-section="appearance" type="button">
+                        <i data-lucide="palette" aria-hidden="true"></i>
+                        <span>Appearance</span>
+                    </button>
+
+                    <button class="settings-nav-item" data-section="team" type="button">
+                        <i data-lucide="users" aria-hidden="true"></i>
+                        <span>Team Access</span>
+                    </button>
+
+                    <button class="settings-nav-item" data-section="data" type="button">
+                        <i data-lucide="database" aria-hidden="true"></i>
+                        <span>Data & Backup</span>
+                    </button>
+
+                </aside>
+
+
+                <!-- SETTINGS PANEL -->
+
+                <div class="settings-panel">
+
+
+                    <!-- =========================
+                         PROFILE
+                    ========================== -->
+
+                    <section class="settings-section active" id="profile" aria-labelledby="profileHeading">
+
+                        <div class="section-header">
+                            <h2 id="profileHeading">Profile</h2>
+                            <p>Update your personal information and profile photo.</p>
+                        </div>
+
+
+                        <div class="profile-top">
+
+                            <div class="profile-avatar-large" aria-hidden="true">A</div>
+
+                            <div class="profile-upload">
+
+                                <strong>Profile Photo</strong>
+
+                                <small>JPG, PNG or GIF. Max size 2MB.</small>
+
+                                <div class="profile-upload-actions">
+
+                                    <button class="secondary-button" id="uploadPhotoButton" type="button">
+                                        <i data-lucide="upload" aria-hidden="true"></i>
+                                        Upload New
+                                    </button>
+
+                                    <button class="text-danger-button" id="removePhotoButton" type="button">
+                                        Remove
+                                    </button>
+
+                                </div>
+
+                                <input type="file" id="avatarInput" accept="image/*" hidden>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" value="Administrator">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Enter last name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="admin@unclerons.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" value="+63 917 555 0100">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <input type="text" id="role" value="Administrator" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="timezoneProfile">Timezone</label>
+                                <select id="timezoneProfile">
+                                    <option value="Asia/Manila" selected>Asia/Manila (GMT+8)</option>
+                                    <option value="Asia/Singapore">Asia/Singapore (GMT+8)</option>
+                                    <option value="Asia/Tokyo">Asia/Tokyo (GMT+9)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" rows="3" placeholder="Tell us a bit about yourself..."></textarea>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         BUSINESS INFO
+                    ========================== -->
+
+                    <section class="settings-section" id="business" aria-labelledby="businessHeading">
+
+                        <div class="section-header">
+                            <h2 id="businessHeading">Business Information</h2>
+                            <p>Details that appear on your booking confirmations and receipts.</p>
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group full">
+                                <label for="businessName">Business Name</label>
+                                <input type="text" id="businessName" value="Uncle Ron's Travel and Tours">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="businessEmail">Business Email</label>
+                                <input type="email" id="businessEmail" value="hello@unclerons.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="businessPhone">Business Phone</label>
+                                <input type="tel" id="businessPhone" value="+63 32 555 0100">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="businessTin">TIN</label>
+                                <input type="text" id="businessTin" placeholder="000-000-000-000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="businessRegNo">Business Reg. No.</label>
+                                <input type="text" id="businessRegNo" placeholder="REG-0000-0000">
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="businessAddress">Address</label>
+                                <input type="text" id="businessAddress" value="123 Osmeña Blvd, Cebu City, Philippines">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="currency">Currency</label>
+                                <select id="currency">
+                                    <option value="PHP" selected>PHP — Philippine Peso (₱)</option>
+                                    <option value="USD">USD — US Dollar ($)</option>
+                                    <option value="EUR">EUR — Euro (€)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="timezone">Default Timezone</label>
+                                <select id="timezone">
+                                    <option value="Asia/Manila" selected>Asia/Manila (GMT+8)</option>
+                                    <option value="Asia/Singapore">Asia/Singapore (GMT+8)</option>
+                                    <option value="Asia/Tokyo">Asia/Tokyo (GMT+9)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dateFormat">Date Format</label>
+                                <select id="dateFormat">
+                                    <option value="MMM DD, YYYY" selected>Sep 30, 2026</option>
+                                    <option value="MM/DD/YYYY">09/30/2026</option>
+                                    <option value="DD/MM/YYYY">30/09/2026</option>
+                                    <option value="YYYY-MM-DD">2026-09-30</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="language">Default Language</label>
+                                <select id="language">
+                                    <option value="en" selected>English</option>
+                                    <option value="fil">Filipino</option>
+                                    <option value="ceb">Cebuano</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         NOTIFICATIONS
+                    ========================== -->
+
+                    <section class="settings-section" id="notifications" aria-labelledby="notificationsHeading">
+
+                        <div class="section-header">
+                            <h2 id="notificationsHeading">Notifications</h2>
+                            <p>Choose which alerts you'd like to receive.</p>
+                        </div>
+
+
+                        <div class="toggle-list">
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>New Booking Alerts</strong>
+                                    <small>Get notified when a new booking is made.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-setting="notifyNewBooking">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>New Reviews</strong>
+                                    <small>Receive notifications when a customer leaves a review.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-setting="notifyNewReview">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>Payment Confirmations</strong>
+                                    <small>Alert when a customer completes a payment.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-setting="notifyPayment">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>Weekly Summary Email</strong>
+                                    <small>Get a weekly report of your bookings and revenue.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" data-setting="notifyWeekly">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>SMS Alerts</strong>
+                                    <small>Receive urgent alerts via text message.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" data-setting="notifySms">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>Push Notifications</strong>
+                                    <small>Get browser push notifications for real-time updates.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-setting="notifyPush">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         SECURITY
+                    ========================== -->
+
+                    <section class="settings-section" id="security" aria-labelledby="securityHeading">
+
+                        <div class="section-header">
+                            <h2 id="securityHeading">Security</h2>
+                            <p>Manage your password and account security.</p>
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group full">
+                                <label for="currentPassword">Current Password</label>
+                                <div class="password-wrap">
+                                    <input type="password" id="currentPassword" placeholder="Enter current password">
+                                    <button type="button" class="toggle-password" data-target="currentPassword" aria-label="Show password">
+                                        <i data-lucide="eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <div class="password-wrap">
+                                    <input type="password" id="newPassword" placeholder="Enter new password">
+                                    <button type="button" class="toggle-password" data-target="newPassword" aria-label="Show password">
+                                        <i data-lucide="eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <small class="field-hint" id="passwordStrength">At least 8 characters</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <div class="password-wrap">
+                                    <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                                    <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Show password">
+                                        <i data-lucide="eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="security-extras">
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>Two-Factor Authentication</strong>
+                                    <small>Add an extra layer of security to your account.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" data-setting="twoFactor">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <strong>Login Alerts</strong>
+                                    <small>Get notified when your account is accessed from a new device.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-setting="loginAlerts">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+
+                        <div class="section-actions">
+                            <button class="secondary-button" id="updatePasswordButton" type="button">
+                                <i data-lucide="key-round" aria-hidden="true"></i>
+                                Update Password
+                            </button>
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         APPEARANCE
+                    ========================== -->
+
+                    <section class="settings-section" id="appearance" aria-labelledby="appearanceHeading">
+
+                        <div class="section-header">
+                            <h2 id="appearanceHeading">Appearance</h2>
+                            <p>Customize how the dashboard looks and feels.</p>
+                        </div>
+
+
+                        <div class="appearance-block">
+
+                            <strong>Theme</strong>
+                            <small>Choose between light and dark mode.</small>
+
+                            <div class="theme-options">
+
+                                <button class="theme-option active" data-theme="light" type="button">
+                                    <div class="theme-preview light">
+                                        <div class="theme-preview-sidebar"></div>
+                                        <div class="theme-preview-main">
+                                            <div class="theme-preview-bar"></div>
+                                            <div class="theme-preview-bar short"></div>
+                                        </div>
+                                    </div>
+                                    <span>Light</span>
+                                </button>
+
+                                <button class="theme-option" data-theme="dark" type="button">
+                                    <div class="theme-preview dark">
+                                        <div class="theme-preview-sidebar"></div>
+                                        <div class="theme-preview-main">
+                                            <div class="theme-preview-bar"></div>
+                                            <div class="theme-preview-bar short"></div>
+                                        </div>
+                                    </div>
+                                    <span>Dark</span>
+                                </button>
+
+                                <button class="theme-option" data-theme="system" type="button">
+                                    <div class="theme-preview system">
+                                        <div class="theme-preview-sidebar"></div>
+                                        <div class="theme-preview-main">
+                                            <div class="theme-preview-bar"></div>
+                                            <div class="theme-preview-bar short"></div>
+                                        </div>
+                                    </div>
+                                    <span>System</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="appearance-block">
+
+                            <strong>Accent Color</strong>
+                            <small>Choose the primary color used across the dashboard.</small>
+
+                            <div class="color-options">
+
+                                <button class="color-option active" data-color="#1d75f0" style="background: #1d75f0" title="Blue" type="button" aria-label="Blue"></button>
+                                <button class="color-option" data-color="#18a968" style="background: #18a968" title="Green" type="button" aria-label="Green"></button>
+                                <button class="color-option" data-color="#7656d8" style="background: #7656d8" title="Purple" type="button" aria-label="Purple"></button>
+                                <button class="color-option" data-color="#ffb91f" style="background: #ffb91f" title="Yellow" type="button" aria-label="Yellow"></button>
+                                <button class="color-option" data-color="#ef4444" style="background: #ef4444" title="Red" type="button" aria-label="Red"></button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="appearance-block">
+
+                            <strong>Density</strong>
+                            <small>Control how compact or spacious the dashboard feels.</small>
+
+                            <div class="density-options">
+
+                                <label class="density-option">
+                                    <input type="radio" name="density" value="compact">
+                                    <span>Compact</span>
+                                </label>
+
+                                <label class="density-option">
+                                    <input type="radio" name="density" value="normal" checked>
+                                    <span>Normal</span>
+                                </label>
+
+                                <label class="density-option">
+                                    <input type="radio" name="density" value="comfortable">
+                                    <span>Comfortable</span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         TEAM ACCESS
+                    ========================== -->
+
+                    <section class="settings-section" id="team" aria-labelledby="teamHeading">
+
+                        <div class="section-header">
+                            <h2 id="teamHeading">Team Access</h2>
+                            <p>Manage who has access to the admin dashboard.</p>
+                        </div>
+
+
+                        <div class="team-list" id="teamList">
+
+                            <div class="team-member">
+                                <div class="team-avatar admin">A</div>
+                                <div class="team-info">
+                                    <strong>Administrator</strong>
+                                    <small>admin@unclerons.com</small>
+                                </div>
+                                <span class="status vip">Owner</span>
+                                <button class="icon-button" disabled title="You can't remove yourself">
+                                    <i data-lucide="lock" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+
+                            <div class="team-member">
+                                <div class="team-avatar">P</div>
+                                <div class="team-info">
+                                    <strong>Patrick Reyes</strong>
+                                    <small>patrick@unclerons.com</small>
+                                </div>
+                                <span class="status returning">Staff</span>
+                                <button class="icon-button delete-button" title="Remove access">
+                                    <i data-lucide="user-minus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+
+                            <div class="team-member">
+                                <div class="team-avatar">R</div>
+                                <div class="team-info">
+                                    <strong>Rico Mendoza</strong>
+                                    <small>rico@unclerons.com</small>
+                                </div>
+                                <span class="status returning">Staff</span>
+                                <button class="icon-button delete-button" title="Remove access">
+                                    <i data-lucide="user-minus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <div class="section-actions">
+                            <button class="secondary-button" id="inviteMemberButton" type="button">
+                                <i data-lucide="user-plus" aria-hidden="true"></i>
+                                Invite Member
+                            </button>
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         DATA & BACKUP
+                    ========================== -->
+
+                    <section class="settings-section" id="data" aria-labelledby="dataHeading">
+
+                        <div class="section-header">
+                            <h2 id="dataHeading">Data &amp; Backup</h2>
+                            <p>Export your data or manage backups.</p>
+                        </div>
+
+
+                        <div class="data-grid">
+
+                            <div class="data-card">
+                                <div class="data-card-icon blue" aria-hidden="true">
+                                    <i data-lucide="download"></i>
+                                </div>
+                                <div>
+                                    <strong>Export Data</strong>
+                                    <small>Download all your data as a JSON or CSV file.</small>
+                                </div>
+                                <button class="secondary-button" id="exportDataButton" type="button">
+                                    Export
+                                </button>
+                            </div>
+
+
+                            <div class="data-card">
+                                <div class="data-card-icon green" aria-hidden="true">
+                                    <i data-lucide="cloud-upload"></i>
+                                </div>
+                                <div>
+                                    <strong>Backup Now</strong>
+                                    <small>Create a snapshot of your current data.</small>
+                                </div>
+                                <button class="secondary-button" id="backupNowButton" type="button">
+                                    Backup
+                                </button>
+                            </div>
+
+
+                            <div class="data-card">
+                                <div class="data-card-icon yellow" aria-hidden="true">
+                                    <i data-lucide="history"></i>
+                                </div>
+                                <div>
+                                    <strong>Auto Backup</strong>
+                                    <small>Backup daily at 2:00 AM.</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked data-setting="autoBackup">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="data-card danger-zone">
+                                <div class="data-card-icon red" aria-hidden="true">
+                                    <i data-lucide="alert-triangle"></i>
+                                </div>
+                                <div>
+                                    <strong>Reset All Data</strong>
+                                    <small>Permanently delete all data. Cannot be undone.</small>
+                                </div>
+                                <button class="danger-button" id="resetDataButton" type="button">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+
+    <!-- =========================
+         CONFIRM MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="confirmModal" hidden>
+
+        <div class="modal modal-sm" role="dialog" aria-labelledby="confirmModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="confirmModalTitle">Confirm Action</h2>
+                    <p id="confirmModalSubtitle">Are you sure?</p>
+                </div>
+                <button class="modal-close" id="confirmModalClose" type="button" aria-label="Close">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="confirm-block">
+
+                    <div class="confirm-icon danger" aria-hidden="true">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+
+                    <div class="confirm-text">
+                        <strong id="confirmTitle">Confirm</strong>
+                        <p id="confirmMessage">This action cannot be undone.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="secondary-button" id="confirmCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="danger-button" id="confirmOkButton" type="button">
+                    <i data-lucide="check" aria-hidden="true"></i>
+                    Confirm
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/settings.js"></script>
+
+</body>
+</html>

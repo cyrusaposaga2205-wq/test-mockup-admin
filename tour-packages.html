@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08356f">
+
+    <title>Tour Packages | Uncle Ron's Travel and Tours</title>
+
+    <link rel="stylesheet" href="css/tour-packages.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+        aria-label="Main navigation">
+
+        <div class="sidebar-logo">
+            <img src="images/logo.png" alt="Uncle Ron's Travel and Tours">
+            <h3>UNCLE RON'S</h3>
+            <span>TRAVEL AND TOURS</span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-link">
+                <span class="icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="tour-packages.html" class="nav-link active" aria-current="page">
+                <span class="icon"><i data-lucide="package" aria-hidden="true"></i></span>
+                <span>Tour Packages</span>
+            </a>
+
+            <a href="bookings.html" class="nav-link">
+                <span class="icon"><i data-lucide="calendar-check" aria-hidden="true"></i></span>
+                <span>Bookings</span>
+                <span class="nav-badge">8</span>
+            </a>
+
+            <a href="customers.html" class="nav-link">
+                <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
+                <span>Customers</span>
+            </a>
+
+            <a href="reviews.html" class="nav-link">
+                <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
+                <span>Reviews</span>
+                <span class="nav-badge">3</span>
+            </a>
+
+            <a href="photos.html" class="nav-link">
+                <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
+                <span>Photos</span>
+            </a>
+
+             <a href="staff-accounts.html" class="nav-link">
+                <span class="icon"><i data-lucide="user-round" aria-hidden="true"></i></span>
+                <span>Staff Accounts</span>
+            </a>
+
+            <a href="reports.html" class="nav-link">
+                <span class="icon"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i></span>
+                <span>Reports</span>
+            </a>
+
+            <a href="settings.html" class="nav-link">
+                <span class="icon"><i data-lucide="settings" aria-hidden="true"></i></span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="admin-mini">
+                <div class="admin-avatar" aria-hidden="true">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>System Admin</small>
+                </div>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                <span class="logout-icon" aria-hidden="true">⇥</span>
+                <span class="logout-label">Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+                type="button"
+                aria-label="Hide sidebar"
+                aria-controls="sidebar"
+                aria-expanded="true">
+                <i data-lucide="menu" aria-hidden="true"></i>
+            </button>
+
+
+            <div class="search-container">
+                <span class="search-icon" aria-hidden="true">
+                    <i data-lucide="search"></i>
+                </span>
+
+                <input
+                    type="search"
+                    id="globalSearch"
+                    placeholder="Search packages by name, location..."
+                    aria-label="Search packages"
+                    autocomplete="off"
+                >
+
+                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-button" id="notificationButton" type="button" aria-label="Notifications (3 new)">
+                    <i data-lucide="bell" aria-hidden="true"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+
+                <button class="admin-profile" id="adminProfileButton" type="button" aria-haspopup="true" aria-expanded="false">
+                    <div class="admin-avatar" aria-hidden="true">A</div>
+                    <div class="admin-profile-info">
+                        <strong>Administrator</strong>
+                        <small>Admin</small>
+                    </div>
+                    <i data-lucide="chevron-down" class="dropdown-arrow" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-header-text">
+
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="index.html">Dashboard</a>
+                        <i data-lucide="chevron-right" aria-hidden="true"></i>
+                        <span>Tour Packages</span>
+                    </nav>
+
+                    <h1>Tour Packages</h1>
+
+                    <p>Create, edit, and organize all your available tour packages.</p>
+
+                </div>
+
+
+                <div class="page-header-actions">
+
+                    <button class="secondary-button" id="exportPackagesButton" type="button">
+                        <i data-lucide="download" aria-hidden="true"></i>
+                        Export
+                    </button>
+
+                    <button class="primary-button" id="addPackageButton" type="button">
+                        <i data-lucide="plus" aria-hidden="true"></i>
+                        Add Package
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- MINI STATS -->
+
+            <section class="mini-stats" aria-label="Package statistics">
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon blue" aria-hidden="true">
+                        <i data-lucide="package"></i>
+                    </div>
+                    <div>
+                        <span>Total Packages</span>
+                        <strong id="statTotal">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon green" aria-hidden="true">
+                        <i data-lucide="check-circle-2"></i>
+                    </div>
+                    <div>
+                        <span>Active</span>
+                        <strong id="statActive">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon yellow" aria-hidden="true">
+                        <i data-lucide="file-edit"></i>
+                    </div>
+                    <div>
+                        <span>Draft</span>
+                        <strong id="statDraft">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon purple" aria-hidden="true">
+                        <i data-lucide="archive"></i>
+                    </div>
+                    <div>
+                        <span>Archived</span>
+                        <strong id="statArchived">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- TOOLBAR -->
+
+            <section class="toolbar">
+
+                <div class="toolbar-left">
+
+                    <div class="filter-tabs" role="tablist" aria-label="Package status filter">
+
+                        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+                            All
+                            <span class="tab-count" id="countAll">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="active" role="tab" aria-selected="false">
+                            Active
+                            <span class="tab-count" id="countActive">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="draft" role="tab" aria-selected="false">
+                            Draft
+                            <span class="tab-count" id="countDraft">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="archived" role="tab" aria-selected="false">
+                            Archived
+                            <span class="tab-count" id="countArchived">0</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="toolbar-right">
+
+                    <div class="sort-select-wrap">
+                        <i data-lucide="arrow-up-down" aria-hidden="true"></i>
+                        <select id="sortSelect" aria-label="Sort packages">
+                            <option value="newest">Newest first</option>
+                            <option value="oldest">Oldest first</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating-high">Rating: High to Low</option>
+                            <option value="name-asc">Name: A → Z</option>
+                            <option value="name-desc">Name: Z → A</option>
+                        </select>
+                    </div>
+
+
+                    <div class="view-toggle" role="group" aria-label="View mode">
+
+                        <button class="view-toggle-btn active" data-view="grid" aria-label="Grid view" title="Grid view">
+                            <i data-lucide="layout-grid" aria-hidden="true"></i>
+                        </button>
+
+                        <button class="view-toggle-btn" data-view="table" aria-label="Table view" title="Table view">
+                            <i data-lucide="list" aria-hidden="true"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BULK ACTIONS BAR (hidden by default) -->
+
+            <div class="bulk-bar" id="bulkBar" hidden>
+
+                <span class="bulk-info">
+                    <strong id="bulkCount">0</strong> selected
+                </span>
+
+                <div class="bulk-actions">
+
+                    <button class="bulk-button" data-bulk-action="activate">
+                        <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                        Activate
+                    </button>
+
+                    <button class="bulk-button" data-bulk-action="archive">
+                        <i data-lucide="archive" aria-hidden="true"></i>
+                        Archive
+                    </button>
+
+                    <button class="bulk-button danger" data-bulk-action="delete">
+                        <i data-lucide="trash-2" aria-hidden="true"></i>
+                        Delete
+                    </button>
+
+                    <button class="bulk-button subtle" data-bulk-action="clear">
+                        Clear
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PACKAGES GRID -->
+
+            <section class="packages-grid" id="packagesGrid" aria-label="Tour packages">
+
+
+                <!-- CARD 1 -->
+
+                <article
+                    class="package-card"
+                    data-id="1"
+                    data-status="active"
+                    data-price="5098"
+                    data-rating="4.9"
+                    data-duration="3"
+                    data-created="2026-09-01"
+                    data-name="3D2N Cebu Tour"
+                    tabindex="0">
+
+                    <label class="package-checkbox" aria-label="Select 3D2N Cebu Tour">
+                        <input type="checkbox" class="package-select">
+                        <span></span>
+                    </label>
+
+
+                    <div class="package-thumb">
+
+                        <span class="package-badge active">Active</span>
+
+                        <i data-lucide="map-pin" aria-hidden="true"></i>
+
+                    </div>
+
+
+                    <div class="package-body">
+
+                        <div class="package-head">
+
+                            <h3>3D2N Cebu Tour</h3>
+
+                            <span class="package-rating" aria-label="Rating 4.9 out of 5">
+                                <i data-lucide="star" aria-hidden="true"></i>
+                                4.9
+                            </span>
+
+                        </div>
+
+
+                        <p class="package-desc">
+                            Explore Cebu City, historical sites,
+                            and the famous uphill viewpoints.
+                        </p>
+
+
+                        <div class="package-meta">
+
+                            <span>
+                                <i data-lucide="clock-3" aria-hidden="true"></i>
+                                3 Days / 2 Nights
+                            </span>
+
+                            <span>
+                                <i data-lucide="map-pin" aria-hidden="true"></i>
+                                Cebu City
+                            </span>
+
+                        </div>
+
+
+                        <div class="package-footer">
+
+                            <div class="package-price-tag">
+                                <strong>₱5,098</strong>
+                                <small>/head</small>
+                            </div>
+
+
+                            <div class="package-actions">
+
+                                <button class="icon-button view-button" title="View" aria-label="View package">
+                                    <i data-lucide="eye" aria-hidden="true"></i>
+                                </button>
+
+                                <button class="icon-button edit-button" title="Edit" aria-label="Edit package">
+                                    <i data-lucide="pencil" aria-hidden="true"></i>
+                                </button>
+
+                                <button class="icon-button delete-button" title="Delete" aria-label="Delete package">
+                                    <i data-lucide="trash-2" aria-hidden="true"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 2 -->
+
+                <article
+                    class="package-card"
+                    data-id="2"
+                    data-status="active"
+                    data-price="3500"
+                    data-rating="4.8"
+                    data-duration="1"
+                    data-created="2026-08-20"
+                    data-name="Moalboal-Badian"
+                    tabindex="0">
+
+                    <label class="package-checkbox" aria-label="Select Moalboal-Badian">
+                        <input type="checkbox" class="package-select">
+                        <span></span>
+                    </label>
+
+                    <div class="package-thumb">
+                        <span class="package-badge active">Active</span>
+                        <i data-lucide="waves" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="package-body">
+
+                        <div class="package-head">
+                            <h3>Moalboal-Badian</h3>
+                            <span class="package-rating" aria-label="Rating 4.8 out of 5">
+                                <i data-lucide="star" aria-hidden="true"></i>
+                                4.8
+                            </span>
+                        </div>
+
+                        <p class="package-desc">
+                            Swim with sardines and sea turtles in
+                            South Cebu's famous dive spots.
+                        </p>
+
+                        <div class="package-meta">
+                            <span>
+                                <i data-lucide="clock-3" aria-hidden="true"></i>
+                                Day Tour
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" aria-hidden="true"></i>
+                                South Cebu
+                            </span>
+                        </div>
+
+                        <div class="package-footer">
+
+                            <div class="package-price-tag">
+                                <strong>₱3,500</strong>
+                                <small>/head</small>
+                            </div>
+
+                            <div class="package-actions">
+                                <button class="icon-button view-button" title="View"><i data-lucide="eye" aria-hidden="true"></i></button>
+                                <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil" aria-hidden="true"></i></button>
+                                <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 3 -->
+
+                <article
+                    class="package-card"
+                    data-id="3"
+                    data-status="active"
+                    data-price="7598"
+                    data-rating="4.9"
+                    data-duration="4"
+                    data-created="2026-09-10"
+                    data-name="4D3N Cebu-Bohol"
+                    tabindex="0">
+
+                    <label class="package-checkbox" aria-label="Select 4D3N Cebu-Bohol">
+                        <input type="checkbox" class="package-select">
+                        <span></span>
+                    </label>
+
+                    <div class="package-thumb">
+                        <span class="package-badge active">Active</span>
+                        <i data-lucide="palmtree" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="package-body">
+
+                        <div class="package-head">
+                            <h3>4D3N Cebu-Bohol</h3>
+                            <span class="package-rating" aria-label="Rating 4.9 out of 5">
+                                <i data-lucide="star" aria-hidden="true"></i>
+                                4.9
+                            </span>
+                        </div>
+
+                        <p class="package-desc">
+                            Discover the best of Cebu and Bohol
+                            in one unforgettable package.
+                        </p>
+
+                        <div class="package-meta">
+                            <span>
+                                <i data-lucide="clock-3" aria-hidden="true"></i>
+                                4 Days / 3 Nights
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" aria-hidden="true"></i>
+                                Cebu &amp; Bohol
+                            </span>
+                        </div>
+
+                        <div class="package-footer">
+
+                            <div class="package-price-tag">
+                                <strong>₱7,598</strong>
+                                <small>/head</small>
+                            </div>
+
+                            <div class="package-actions">
+                                <button class="icon-button view-button" title="View"><i data-lucide="eye" aria-hidden="true"></i></button>
+                                <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil" aria-hidden="true"></i></button>
+                                <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 4 -->
+
+                <article
+                    class="package-card"
+                    data-id="4"
+                    data-status="active"
+                    data-price="5098"
+                    data-rating="4.7"
+                    data-duration="1"
+                    data-created="2026-09-05"
+                    data-name="Oslob-Simala"
+                    tabindex="0">
+
+                    <label class="package-checkbox" aria-label="Select Oslob-Simala">
+                        <input type="checkbox" class="package-select">
+                        <span></span>
+                    </label>
+
+                    <div class="package-thumb">
+                        <span class="package-badge active">Active</span>
+                        <i data-lucide="fish" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="package-body">
+
+                        <div class="package-head">
+                            <h3>Oslob-Simala</h3>
+                            <span class="package-rating" aria-label="Rating 4.7 out of 5">
+                                <i data-lucide="star" aria-hidden="true"></i>
+                                4.7
+                            </span>
+                        </div>
+
+                        <p class="package-desc">
+                            Swim with whale sharks in Oslob
+                            and explore the Simala Shrine.
+                        </p>
+
+                        <div class="package-meta">
+                            <span>
+                                <i data-lucide="clock-3" aria-hidden="true"></i>
+                                Day Tour
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" aria-hidden="true"></i>
+                                Oslob
+                            </span>
+                        </div>
+
+                        <div class="package-footer">
+
+                            <div class="package-price-tag">
+                                <strong>₱5,098</strong>
+                                <small>/head</small>
+                            </div>
+
+                            <div class="package-actions">
+                                <button class="icon-button view-button" title="View"><i data-lucide="eye" aria-hidden="true"></i></button>
+                                <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil" aria-hidden="true"></i></button>
+                                <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- CARD 6 — ARCHIVED -->
+
+                <article
+                    class="package-card"
+                    data-id="6"
+                    data-status="archived"
+                    data-price="3800"
+                    data-rating="4.6"
+                    data-duration="1"
+                    data-created="2026-05-15"
+                    data-name="Camotes Island"
+                    tabindex="0">
+
+                    <label class="package-checkbox" aria-label="Select Camotes Island">
+                        <input type="checkbox" class="package-select">
+                        <span></span>
+                    </label>
+
+                    <div class="package-thumb archived">
+                        <span class="package-badge archived">Archived</span>
+                        <i data-lucide="archive" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="package-body">
+
+                        <div class="package-head">
+                            <h3>Camotes Island</h3>
+                            <span class="package-rating" aria-label="Rating 4.6 out of 5">
+                                <i data-lucide="star" aria-hidden="true"></i>
+                                4.6
+                            </span>
+                        </div>
+
+                        <p class="package-desc">
+                            A past favourite tour — currently not
+                            available for booking.
+                        </p>
+
+                        <div class="package-meta">
+                            <span>
+                                <i data-lucide="clock-3" aria-hidden="true"></i>
+                                Day Tour
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" aria-hidden="true"></i>
+                                Camotes
+                            </span>
+                        </div>
+
+                        <div class="package-footer">
+
+                            <div class="package-price-tag">
+                                <strong>₱3,800</strong>
+                                <small>/head</small>
+                            </div>
+
+                            <div class="package-actions">
+                                <button class="icon-button view-button" title="View"><i data-lucide="eye" aria-hidden="true"></i></button>
+                                <button class="icon-button edit-button" title="Edit"><i data-lucide="pencil" aria-hidden="true"></i></button>
+                                <button class="icon-button delete-button" title="Delete"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- TABLE VIEW (hidden by default) -->
+
+            <section class="dashboard-card packages-table-card" id="packagesTableCard" hidden>
+
+                <div class="table-wrapper">
+
+                    <table class="data-table" id="packagesTable">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;">
+                                    <input type="checkbox" id="selectAllTable" aria-label="Select all">
+                                </th>
+                                <th>Package</th>
+                                <th>Location</th>
+                                <th>Duration</th>
+                                <th>Price</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th class="th-actions">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="packagesTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- EMPTY STATE -->
+
+            <div class="empty-state" id="emptyState" hidden>
+                <i data-lucide="package-search" aria-hidden="true"></i>
+                <h3>No packages found</h3>
+                <p>Try a different filter or search keyword, or add a new package.</p>
+                <button class="primary-button" id="emptyAddButton" type="button">
+                    <i data-lucide="plus" aria-hidden="true"></i>
+                    Add Your First Package
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         TOAST CONTAINER
+    ========================== -->
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+
+    <!-- =========================
+         ADD/EDIT PACKAGE MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="packageModal" hidden>
+
+        <div class="modal" role="dialog" aria-labelledby="packageModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="packageModalTitle">Add Tour Package</h2>
+                    <p id="packageModalSubtitle">Create a new tour package for your customers.</p>
+                </div>
+
+                <button class="modal-close" id="modalCloseButton" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <form id="packageForm" novalidate>
+
+                    <input type="hidden" id="packageId">
+
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+                            <label for="packageName">Package Name *</label>
+                            <input type="text" id="packageName" placeholder="e.g., 3D2N Cebu Tour" required>
+                            <small class="field-error" id="packageNameError"></small>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="packageDescription">Description</label>
+                            <textarea id="packageDescription" rows="3" placeholder="Describe the tour experience..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="packageLocation">Location *</label>
+                            <input type="text" id="packageLocation" placeholder="e.g., Cebu City" required>
+                            <small class="field-error" id="packageLocationError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="packageDuration">Duration *</label>
+                            <select id="packageDuration" required>
+                                <option value="">Select duration</option>
+                                <option value="Day Tour">Day Tour</option>
+                                <option value="2 Days / 1 Night">2 Days / 1 Night</option>
+                                <option value="3 Days / 2 Nights">3 Days / 2 Nights</option>
+                                <option value="4 Days / 3 Nights">4 Days / 3 Nights</option>
+                                <option value="5 Days / 4 Nights">5 Days / 4 Nights</option>
+                                <option value="7 Days / 6 Nights">7 Days / 6 Nights</option>
+                            </select>
+                            <small class="field-error" id="packageDurationError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="packagePrice">Price per Head (₱) *</label>
+                            <input type="number" id="packagePrice" min="0" step="50" placeholder="0" required>
+                            <small class="field-error" id="packagePriceError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="packageCapacity">Max Capacity (pax)</label>
+                            <input type="number" id="packageCapacity" min="1" step="1" placeholder="e.g., 20">
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="packageHighlights">Highlights</label>
+                            <input type="text" id="packageHighlights" placeholder="Comma-separated: Whale sharks, Snorkeling, Lunch">
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="packageStatus">Status</label>
+                            <select id="packageStatus">
+                                <option value="active">Active</option>
+                                <option value="draft">Draft</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button class="secondary-button" id="modalCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="primary-button" id="modalSaveButton" type="button">
+                    <i data-lucide="save" aria-hidden="true"></i>
+                    <span id="modalSaveLabel">Save Package</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE CONFIRM MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="deleteModal" hidden>
+
+        <div class="modal modal-sm" role="dialog" aria-labelledby="deleteModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="deleteModalTitle">Delete Package?</h2>
+                    <p>This action cannot be undone.</p>
+                </div>
+
+                <button class="modal-close" id="deleteModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="confirm-block">
+
+                    <div class="confirm-icon danger" aria-hidden="true">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+
+                    <div class="confirm-text">
+                        <strong id="deletePackageName">Package</strong>
+                        <p>will be permanently deleted. Any bookings associated with it will be unaffected, but the package will no longer be available.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button class="secondary-button" id="deleteCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="danger-button" id="deleteConfirmButton" type="button">
+                    <i data-lucide="trash-2" aria-hidden="true"></i>
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="js/tour-packages.js"></script>
+
+</body>
+</html>

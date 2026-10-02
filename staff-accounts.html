@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08356f">
+
+    <title>Staff Accounts | Uncle Ron's Travel and Tours</title>
+
+    <link rel="stylesheet" href="css/staff-accounts.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+
+        <div class="sidebar-logo">
+            <img src="images/logo.png" alt="Uncle Ron's Travel and Tours">
+            <h3>UNCLE RON'S</h3>
+            <span>TRAVEL AND TOURS</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-link">
+                <span class="icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="tour-packages.html" class="nav-link">
+                <span class="icon"><i data-lucide="package" aria-hidden="true"></i></span>
+                <span>Tour Packages</span>
+            </a>
+
+            <a href="bookings.html" class="nav-link">
+                <span class="icon"><i data-lucide="calendar-check" aria-hidden="true"></i></span>
+                <span>Bookings</span>
+                <span class="nav-badge">8</span>
+            </a>
+
+            <a href="customers.html" class="nav-link">
+                <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
+                <span>Customers</span>
+            </a>
+
+            <a href="reviews.html" class="nav-link">
+                <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
+                <span>Reviews</span>
+                <span class="nav-badge">6</span>
+            </a>
+
+            <a href="photos.html" class="nav-link">
+                <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
+                <span>Photos</span>
+            </a>
+
+            <a href="staff-accounts.html" class="nav-link active" aria-current="page">
+                <span class="icon"><i data-lucide="user-cog" aria-hidden="true"></i></span>
+                <span>Staff Accounts</span>
+            </a>
+
+            <a href="reports.html" class="nav-link">
+                <span class="icon"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i></span>
+                <span>Reports</span>
+            </a>
+
+            <a href="settings.html" class="nav-link">
+                <span class="icon"><i data-lucide="settings" aria-hidden="true"></i></span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-mini">
+                <div class="admin-avatar" aria-hidden="true">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>System Admin</small>
+                </div>
+            </div>
+
+            <button class="logout-button" id="logoutButton" type="button">
+                <span class="logout-icon" aria-hidden="true">⇥</span>
+                <span class="logout-label">Logout</span>
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu" type="button"
+                aria-label="Hide sidebar" aria-controls="sidebar" aria-expanded="true">
+                <i data-lucide="menu" aria-hidden="true"></i>
+            </button>
+
+            <div class="search-container">
+                <span class="search-icon" aria-hidden="true">
+                    <i data-lucide="search"></i>
+                </span>
+                <input type="search" id="globalSearch"
+                    placeholder="Search staff by name, email, role..."
+                    aria-label="Search staff" autocomplete="off">
+                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-button" id="notificationButton" type="button"
+                    aria-label="Notifications (3 new)">
+                    <i data-lucide="bell" aria-hidden="true"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <button class="admin-profile" id="adminProfileButton" type="button">
+                    <div class="admin-avatar" aria-hidden="true">A</div>
+                    <div class="admin-profile-info">
+                        <strong>Administrator</strong>
+                        <small>Admin</small>
+                    </div>
+                    <i data-lucide="chevron-down" class="dropdown-arrow" aria-hidden="true"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div class="page-header-text">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <a href="index.html">Dashboard</a>
+                        <i data-lucide="chevron-right" aria-hidden="true"></i>
+                        <span>Staff Accounts</span>
+                    </nav>
+
+                    <h1>Staff Accounts</h1>
+                    <p>Manage logins, roles, and access for your tour guides and staff.</p>
+                </div>
+
+                <div class="page-header-actions">
+                    <button class="secondary-button" id="exportStaffButton" type="button">
+                        <i data-lucide="download" aria-hidden="true"></i>
+                        Export
+                    </button>
+
+                    <button class="primary-button" id="addStaffButton" type="button">
+                        <i data-lucide="user-plus" aria-hidden="true"></i>
+                        Add Staff
+                    </button>
+                </div>
+
+            </section>
+
+
+            <!-- MINI STATS -->
+
+            <section class="mini-stats" aria-label="Staff statistics">
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon blue" aria-hidden="true">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div>
+                        <span>Total Staff</span>
+                        <strong id="statTotal">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon green" aria-hidden="true">
+                        <i data-lucide="check-circle-2"></i>
+                    </div>
+                    <div>
+                        <span>Active</span>
+                        <strong id="statActive">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon yellow" aria-hidden="true">
+                        <i data-lucide="shield"></i>
+                    </div>
+                    <div>
+                        <span>Admins</span>
+                        <strong id="statAdmins">0</strong>
+                    </div>
+                </div>
+
+                <div class="mini-stat">
+                    <div class="mini-stat-icon purple" aria-hidden="true">
+                        <i data-lucide="user-round"></i>
+                    </div>
+                    <div>
+                        <span>Guides</span>
+                        <strong id="statGuides">0</strong>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- TOOLBAR -->
+
+            <section class="toolbar">
+
+                <div class="toolbar-left">
+
+                    <div class="filter-tabs" role="tablist" aria-label="Staff filter">
+
+                        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+                            All
+                            <span class="tab-count" id="countAll">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="active" role="tab" aria-selected="false">
+                            Active
+                            <span class="tab-count" id="countActive">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="inactive" role="tab" aria-selected="false">
+                            Inactive
+                            <span class="tab-count" id="countInactive">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="admin" role="tab" aria-selected="false">
+                            Admins
+                            <span class="tab-count" id="countAdmin">0</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="guide" role="tab" aria-selected="false">
+                            Guides
+                            <span class="tab-count" id="countGuide">0</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="toolbar-right">
+
+                    <div class="sort-select-wrap">
+                        <i data-lucide="arrow-up-down" aria-hidden="true"></i>
+                        <select id="sortSelect" aria-label="Sort staff">
+                            <option value="name-asc">Name: A → Z</option>
+                            <option value="name-desc">Name: Z → A</option>
+                            <option value="newest">Newest added</option>
+                            <option value="tours-high">Most tours</option>
+                            <option value="rating-high">Rating: High to Low</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BULK BAR -->
+
+            <div class="bulk-bar" id="bulkBar" hidden>
+                <span class="bulk-info">
+                    <strong id="bulkCount">0</strong> selected
+                </span>
+
+                <div class="bulk-actions">
+                    <button class="bulk-button" data-bulk-action="activate">
+                        <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                        Activate
+                    </button>
+
+                    <button class="bulk-button" data-bulk-action="deactivate">
+                        <i data-lucide="pause-circle" aria-hidden="true"></i>
+                        Deactivate
+                    </button>
+
+                    <button class="bulk-button danger" data-bulk-action="delete">
+                        <i data-lucide="trash-2" aria-hidden="true"></i>
+                        Delete
+                    </button>
+
+                    <button class="bulk-button subtle" data-bulk-action="clear">
+                        Clear
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- STAFF GRID -->
+
+            <section class="staff-grid" id="staffGrid" aria-label="Staff accounts">
+
+
+                <!-- STAFF 1 -->
+
+                <article
+                    class="staff-card"
+                    data-id="S-001"
+                    data-status="active"
+                    data-role="admin"
+                    data-name="Administrator"
+                    data-email="admin@unclerons.com"
+                    data-phone="+63 917 555 0100"
+                    data-tours="0"
+                    data-rating="0"
+                    data-created="2023-01-01"
+                    data-specialty="System Management"
+                    data-languages="English"
+                    tabindex="0">
+
+                    <label class="staff-checkbox" aria-label="Select Administrator">
+                        <input type="checkbox" class="staff-select">
+                        <span></span>
+                    </label>
+
+                    <div class="staff-header">
+                        <div class="staff-avatar admin" aria-hidden="true">A</div>
+                        <div class="staff-badges">
+                            <span class="staff-role-badge admin">Admin</span>
+                            <span class="staff-status-badge active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-body">
+                        <h3>Administrator</h3>
+                        <p class="staff-email">admin@unclerons.com</p>
+
+                        <div class="staff-meta">
+                            <span><i data-lucide="phone" aria-hidden="true"></i> +63 917 555 0100</span>
+                            <span><i data-lucide="shield" aria-hidden="true"></i> Full Access</span>
+                        </div>
+
+                        <div class="staff-stats">
+                            <div>
+                                <span>Last Login</span>
+                                <strong>2 hours ago</strong>
+                            </div>
+                            <div>
+                                <span>Status</span>
+                                <strong class="green">Active</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-footer">
+                        <button class="text-button edit-button" type="button">
+                            <i data-lucide="pencil" aria-hidden="true"></i>
+                            Edit
+                        </button>
+
+                        <div class="staff-actions">
+                            <button class="icon-button reset-button" title="Reset Password">
+                                <i data-lucide="key-round" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button toggle-button" title="Deactivate" disabled>
+                                <i data-lucide="lock" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button delete-button" title="Delete" disabled>
+                                <i data-lucide="trash-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- STAFF 2 -->
+
+                <article
+                    class="staff-card"
+                    data-id="S-002"
+                    data-status="active"
+                    data-role="guide"
+                    data-name="Patrick Reyes"
+                    data-email="patrick@unclerons.com"
+                    data-phone="+63 917 555 0201"
+                    data-tours="68"
+                    data-rating="4.9"
+                    data-created="2024-03-12"
+                    data-specialty="Island Hopping"
+                    data-languages="English, Cebuano"
+                    tabindex="0">
+
+                    <label class="staff-checkbox" aria-label="Select Patrick Reyes">
+                        <input type="checkbox" class="staff-select">
+                        <span></span>
+                    </label>
+
+                    <div class="staff-header">
+                        <div class="staff-avatar" aria-hidden="true">P</div>
+                        <div class="staff-badges">
+                            <span class="staff-role-badge guide">Guide</span>
+                            <span class="staff-status-badge active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-body">
+                        <h3>Patrick Reyes</h3>
+                        <p class="staff-email">patrick@unclerons.com</p>
+
+                        <div class="staff-rating">
+                            <i data-lucide="star" aria-hidden="true"></i>
+                            <strong>4.9</strong>
+                            <small>(47 reviews)</small>
+                        </div>
+
+                        <div class="staff-meta">
+                            <span><i data-lucide="phone" aria-hidden="true"></i> +63 917 555 0201</span>
+                            <span><i data-lucide="map" aria-hidden="true"></i> 68 tours</span>
+                        </div>
+
+                        <div class="staff-stats">
+                            <div>
+                                <span>Specialty</span>
+                                <strong>Island Hopping</strong>
+                            </div>
+                            <div>
+                                <span>Last Login</span>
+                                <strong>Yesterday</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-footer">
+                        <button class="text-button edit-button" type="button">
+                            <i data-lucide="pencil" aria-hidden="true"></i>
+                            Edit
+                        </button>
+
+                        <div class="staff-actions">
+                            <button class="icon-button reset-button" title="Reset Password">
+                                <i data-lucide="key-round" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button toggle-button" title="Deactivate">
+                                <i data-lucide="pause-circle" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button delete-button" title="Delete">
+                                <i data-lucide="trash-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- STAFF 3 -->
+
+                <article
+                    class="staff-card"
+                    data-id="S-003"
+                    data-status="active"
+                    data-role="guide"
+                    data-name="Rico Mendoza"
+                    data-email="rico@unclerons.com"
+                    data-phone="+63 917 555 0202"
+                    data-tours="54"
+                    data-rating="4.8"
+                    data-created="2024-06-20"
+                    data-specialty="City Tours"
+                    data-languages="English, Tagalog"
+                    tabindex="0">
+
+                    <label class="staff-checkbox" aria-label="Select Rico Mendoza">
+                        <input type="checkbox" class="staff-select">
+                        <span></span>
+                    </label>
+
+                    <div class="staff-header">
+                        <div class="staff-avatar" aria-hidden="true">R</div>
+                        <div class="staff-badges">
+                            <span class="staff-role-badge guide">Guide</span>
+                            <span class="staff-status-badge active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-body">
+                        <h3>Rico Mendoza</h3>
+                        <p class="staff-email">rico@unclerons.com</p>
+
+                        <div class="staff-rating">
+                            <i data-lucide="star" aria-hidden="true"></i>
+                            <strong>4.8</strong>
+                            <small>(38 reviews)</small>
+                        </div>
+
+                        <div class="staff-meta">
+                            <span><i data-lucide="phone" aria-hidden="true"></i> +63 917 555 0202</span>
+                            <span><i data-lucide="map" aria-hidden="true"></i> 54 tours</span>
+                        </div>
+
+                        <div class="staff-stats">
+                            <div>
+                                <span>Specialty</span>
+                                <strong>City Tours</strong>
+                            </div>
+                            <div>
+                                <span>Last Login</span>
+                                <strong>3 days ago</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-footer">
+                        <button class="text-button edit-button" type="button">
+                            <i data-lucide="pencil" aria-hidden="true"></i>
+                            Edit
+                        </button>
+
+                        <div class="staff-actions">
+                            <button class="icon-button reset-button" title="Reset Password">
+                                <i data-lucide="key-round" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button toggle-button" title="Deactivate">
+                                <i data-lucide="pause-circle" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button delete-button" title="Delete">
+                                <i data-lucide="trash-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- STAFF 4 -->
+
+                <article
+                    class="staff-card"
+                    data-id="S-004"
+                    data-status="active"
+                    data-role="staff"
+                    data-name="Carlo Diaz"
+                    data-email="carlo@unclerons.com"
+                    data-phone="+63 917 555 0203"
+                    data-tours="47"
+                    data-rating="4.9"
+                    data-created="2024-08-15"
+                    data-specialty="Adventure Tours"
+                    data-languages="English, Cebuano, Tagalog"
+                    tabindex="0">
+
+                    <label class="staff-checkbox" aria-label="Select Carlo Diaz">
+                        <input type="checkbox" class="staff-select">
+                        <span></span>
+                    </label>
+
+                    <div class="staff-header">
+                        <div class="staff-avatar" aria-hidden="true">C</div>
+                        <div class="staff-badges">
+                            <span class="staff-role-badge staff">Staff</span>
+                            <span class="staff-status-badge active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-body">
+                        <h3>Carlo Diaz</h3>
+                        <p class="staff-email">carlo@unclerons.com</p>
+
+                        <div class="staff-rating">
+                            <i data-lucide="star" aria-hidden="true"></i>
+                            <strong>4.9</strong>
+                            <small>(42 reviews)</small>
+                        </div>
+
+                        <div class="staff-meta">
+                            <span><i data-lucide="phone" aria-hidden="true"></i> +63 917 555 0203</span>
+                            <span><i data-lucide="map" aria-hidden="true"></i> 47 tours</span>
+                        </div>
+
+                        <div class="staff-stats">
+                            <div>
+                                <span>Specialty</span>
+                                <strong>Adventure Tours</strong>
+                            </div>
+                            <div>
+                                <span>Last Login</span>
+                                <strong>1 week ago</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-footer">
+                        <button class="text-button edit-button" type="button">
+                            <i data-lucide="pencil" aria-hidden="true"></i>
+                            Edit
+                        </button>
+
+                        <div class="staff-actions">
+                            <button class="icon-button reset-button" title="Reset Password">
+                                <i data-lucide="key-round" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button toggle-button" title="Deactivate">
+                                <i data-lucide="pause-circle" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button delete-button" title="Delete">
+                                <i data-lucide="trash-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- STAFF 5 — INACTIVE -->
+
+                <article
+                    class="staff-card"
+                    data-id="S-005"
+                    data-status="inactive"
+                    data-role="guide"
+                    data-name="Lisa Fernandez"
+                    data-email="lisa@unclerons.com"
+                    data-phone="+63 917 555 0204"
+                    data-tours="39"
+                    data-rating="5.0"
+                    data-created="2025-01-10"
+                    data-specialty="Cultural Tours"
+                    data-languages="English, Spanish, Cebuano"
+                    tabindex="0">
+
+                    <label class="staff-checkbox" aria-label="Select Lisa Fernandez">
+                        <input type="checkbox" class="staff-select">
+                        <span></span>
+                    </label>
+
+                    <div class="staff-header">
+                        <div class="staff-avatar" aria-hidden="true">L</div>
+                        <div class="staff-badges">
+                            <span class="staff-role-badge guide">Guide</span>
+                            <span class="staff-status-badge inactive">Inactive</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-body">
+                        <h3>Lisa Fernandez</h3>
+                        <p class="staff-email">lisa@unclerons.com</p>
+
+                        <div class="staff-rating">
+                            <i data-lucide="star" aria-hidden="true"></i>
+                            <strong>5.0</strong>
+                            <small>(28 reviews)</small>
+                        </div>
+
+                        <div class="staff-meta">
+                            <span><i data-lucide="phone" aria-hidden="true"></i> +63 917 555 0204</span>
+                            <span><i data-lucide="map" aria-hidden="true"></i> 39 tours</span>
+                        </div>
+
+                        <div class="staff-stats">
+                            <div>
+                                <span>Specialty</span>
+                                <strong>Cultural Tours</strong>
+                            </div>
+                            <div>
+                                <span>Last Login</span>
+                                <strong>2 months ago</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-footer">
+                        <button class="text-button edit-button" type="button">
+                            <i data-lucide="pencil" aria-hidden="true"></i>
+                            Edit
+                        </button>
+
+                        <div class="staff-actions">
+                            <button class="icon-button reset-button" title="Reset Password">
+                                <i data-lucide="key-round" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button toggle-button" title="Activate">
+                                <i data-lucide="play-circle" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button delete-button" title="Delete">
+                                <i data-lucide="trash-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- STAFF 6 -->
+
+                <article
+                    class="staff-card"
+                    data-id="S-006"
+                    data-status="active"
+                    data-role="guide"
+                    data-name="Mark Villanueva"
+                    data-email="mark.v@unclerons.com"
+                    data-phone="+63 917 555 0205"
+                    data-tours="22"
+                    data-rating="4.7"
+                    data-created="2025-06-05"
+                    data-specialty="Beach Tours"
+                    data-languages="English, Tagalog"
+                    tabindex="0">
+
+                    <label class="staff-checkbox" aria-label="Select Mark Villanueva">
+                        <input type="checkbox" class="staff-select">
+                        <span></span>
+                    </label>
+
+                    <div class="staff-header">
+                        <div class="staff-avatar" aria-hidden="true">M</div>
+                        <div class="staff-badges">
+                            <span class="staff-role-badge guide">Guide</span>
+                            <span class="staff-status-badge active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-body">
+                        <h3>Mark Villanueva</h3>
+                        <p class="staff-email">mark.v@unclerons.com</p>
+
+                        <div class="staff-rating">
+                            <i data-lucide="star" aria-hidden="true"></i>
+                            <strong>4.7</strong>
+                            <small>(18 reviews)</small>
+                        </div>
+
+                        <div class="staff-meta">
+                            <span><i data-lucide="phone" aria-hidden="true"></i> +63 917 555 0205</span>
+                            <span><i data-lucide="map" aria-hidden="true"></i> 22 tours</span>
+                        </div>
+
+                        <div class="staff-stats">
+                            <div>
+                                <span>Specialty</span>
+                                <strong>Beach Tours</strong>
+                            </div>
+                            <div>
+                                <span>Last Login</span>
+                                <strong>Today</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="staff-footer">
+                        <button class="text-button edit-button" type="button">
+                            <i data-lucide="pencil" aria-hidden="true"></i>
+                            Edit
+                        </button>
+
+                        <div class="staff-actions">
+                            <button class="icon-button reset-button" title="Reset Password">
+                                <i data-lucide="key-round" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button toggle-button" title="Deactivate">
+                                <i data-lucide="pause-circle" aria-hidden="true"></i>
+                            </button>
+                            <button class="icon-button delete-button" title="Delete">
+                                <i data-lucide="trash-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- EMPTY STATE -->
+
+            <div class="empty-state" id="emptyState" hidden>
+                <i data-lucide="users" aria-hidden="true"></i>
+                <h3>No staff found</h3>
+                <p>Try a different filter or add a new staff account.</p>
+                <button class="primary-button" id="emptyAddButton" type="button">
+                    <i data-lucide="user-plus" aria-hidden="true"></i>
+                    Add Staff
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+
+    <!-- =========================
+         ADD / EDIT STAFF MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="staffModal" hidden>
+
+        <div class="modal modal-lg" role="dialog" aria-labelledby="staffModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="staffModalTitle">Add Staff Account</h2>
+                    <p id="staffModalSubtitle">Create a login for a new staff member.</p>
+                </div>
+                <button class="modal-close" id="staffModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="staffForm" novalidate>
+
+                    <input type="hidden" id="staffId">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="staffFirstName">First Name *</label>
+                            <input type="text" id="staffFirstName" placeholder="e.g., Juan" required>
+                            <small class="field-error" id="staffFirstNameError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staffLastName">Last Name *</label>
+                            <input type="text" id="staffLastName" placeholder="e.g., Dela Cruz" required>
+                            <small class="field-error" id="staffLastNameError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staffEmail">Email *</label>
+                            <input type="email" id="staffEmail" placeholder="name@unclerons.com" required>
+                            <small class="field-error" id="staffEmailError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staffPhone">Phone</label>
+                            <input type="tel" id="staffPhone" placeholder="+63 9XX XXX XXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staffRole">Role *</label>
+                            <select id="staffRole" required>
+                                <option value="">Select role</option>
+                                <option value="admin">Admin — Full access</option>
+                                <option value="staff">Staff — Bookings & check-ins</option>
+                                <option value="guide">Guide — Assigned tours only</option>
+                            </select>
+                            <small class="field-error" id="staffRoleError"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staffStatus">Status</label>
+                            <select id="staffStatus">
+                                <option value="active" selected>Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staffSpecialty">Specialty</label>
+                            <input type="text" id="staffSpecialty" placeholder="e.g., Island Hopping">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staffLanguages">Languages</label>
+                            <input type="text" id="staffLanguages" placeholder="e.g., English, Cebuano">
+                        </div>
+
+                        <div class="form-group full" id="passwordGroup">
+                            <label for="staffPassword">Temporary Password *</label>
+                            <div class="password-wrap">
+                                <input type="text" id="staffPassword" placeholder="Auto-generated" readonly>
+                                <button type="button" class="toggle-password" id="generatePasswordButton" title="Generate new password">
+                                    <i data-lucide="refresh-cw" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <small class="field-hint">Share this password with the staff member. They can change it after first login.</small>
+                        </div>
+
+                        <div class="form-group full">
+                            <label class="toggle-row-inline">
+                                <span>
+                                    <strong>Send Welcome Email</strong>
+                                    <small>Notify the staff member about their new account.</small>
+                                </span>
+                                <label class="switch">
+                                    <input type="checkbox" id="sendWelcomeEmail" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="secondary-button" id="staffCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="primary-button" id="staffSaveButton" type="button">
+                    <i data-lucide="save" aria-hidden="true"></i>
+                    <span id="staffSaveLabel">Save Staff</span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESET PASSWORD MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="resetModal" hidden>
+
+        <div class="modal" role="dialog" aria-labelledby="resetModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="resetModalTitle">Reset Password</h2>
+                    <p id="resetModalSubtitle">Choose how to reset the staff password.</p>
+                </div>
+                <button class="modal-close" id="resetModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="reset-user-block">
+                    <div class="staff-avatar" id="resetAvatar" aria-hidden="true">P</div>
+                    <div>
+                        <strong id="resetName">Patrick Reyes</strong>
+                        <small id="resetEmail">patrick@unclerons.com</small>
+                    </div>
+                </div>
+
+                <div class="reset-options">
+
+                    <button class="reset-option active" data-method="generate" type="button">
+                        <div class="reset-option-icon blue">
+                            <i data-lucide="key-round" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <strong>Generate Temporary Password</strong>
+                            <small>Create a new password the admin can share manually.</small>
+                        </div>
+                        <i data-lucide="check-circle-2" class="reset-option-check" aria-hidden="true"></i>
+                    </button>
+
+                    <button class="reset-option" data-method="email" type="button">
+                        <div class="reset-option-icon green">
+                            <i data-lucide="mail" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <strong>Send Reset Link via Email</strong>
+                            <small>Email a secure link to reset their own password.</small>
+                        </div>
+                        <i data-lucide="check-circle-2" class="reset-option-check" aria-hidden="true"></i>
+                    </button>
+
+                </div>
+
+                <div class="reset-result" id="resetResult" hidden>
+                    <div class="reset-result-label">
+                        <i data-lucide="key" aria-hidden="true"></i>
+                        New Temporary Password
+                    </div>
+                    <div class="reset-result-value">
+                        <code id="newPasswordValue">—</code>
+                        <button class="icon-button" id="copyPasswordButton" title="Copy password">
+                            <i data-lucide="copy" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <small>Share this securely. It expires in 24 hours.</small>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="secondary-button" id="resetCancelButton" type="button">
+                    Cancel
+                </button>
+
+                <button class="primary-button" id="resetConfirmButton" type="button">
+                    <i data-lucide="check" aria-hidden="true"></i>
+                    <span id="resetConfirmLabel">Generate Password</span>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE CONFIRM MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="deleteModal" hidden>
+
+        <div class="modal modal-sm" role="dialog" aria-labelledby="deleteModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="deleteModalTitle">Delete Staff Account?</h2>
+                    <p>This action cannot be undone.</p>
+                </div>
+                <button class="modal-close" id="deleteModalClose" type="button" aria-label="Close">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="confirm-block">
+                    <div class="confirm-icon danger" aria-hidden="true">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+                    <div class="confirm-text">
+                        <strong id="deleteStaffName">Staff Member</strong>
+                        <p>will lose access immediately. All their login credentials will be removed. This cannot be undone.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="secondary-button" id="deleteCancelButton" type="button">
+                    Cancel
+                </button>
+                <button class="danger-button" id="deleteConfirmButton" type="button">
+                    <i data-lucide="trash-2" aria-hidden="true"></i>
+                    Delete
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         VIEW STAFF MODAL
+    ========================== -->
+
+    <div class="modal-backdrop" id="viewModal" hidden>
+
+        <div class="modal modal-lg" role="dialog" aria-labelledby="viewModalTitle" aria-modal="true">
+
+            <div class="modal-header">
+                <div>
+                    <h2 id="viewModalTitle">Staff Profile</h2>
+                    <p id="viewModalSubtitle">Full details and activity</p>
+                </div>
+                <button class="modal-close" id="viewModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-body modal-body-scroll">
+
+                <div class="view-hero">
+                    <div class="staff-avatar-large" id="viewAvatar" aria-hidden="true">P</div>
+                    <div class="view-hero-info">
+                        <h3 id="viewName">Patrick Reyes</h3>
+                        <div class="view-hero-meta">
+                            <span class="staff-role-badge guide" id="viewRoleBadge">Guide</span>
+                            <span class="staff-status-badge active" id="viewStatusBadge">Active</span>
+                            <span class="view-id" id="viewId">S-002</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-grid">
+
+                    <div class="detail-block">
+                        <h4><i data-lucide="user-round" aria-hidden="true"></i> Contact</h4>
+                        <div class="detail-row">
+                            <span>Email</span>
+                            <strong id="viewEmail">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Phone</span>
+                            <strong id="viewPhone">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Added</span>
+                            <strong id="viewCreated">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-block">
+                        <h4><i data-lucide="briefcase" aria-hidden="true"></i> Role Details</h4>
+                        <div class="detail-row">
+                            <span>Specialty</span>
+                            <strong id="viewSpecialty">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Languages</span>
+                            <strong id="viewLanguages">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Permissions</span>
+                            <strong id="viewPermissions">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-block">
+                        <h4><i data-lucide="chart-line" aria-hidden="true"></i> Performance</h4>
+                        <div class="detail-row">
+                            <span>Tours Completed</span>
+                            <strong id="viewTours">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Average Rating</span>
+                            <strong id="viewRating">—</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Last Login</span>
+                            <strong id="viewLastLogin">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-block">
+                        <h4><i data-lucide="activity" aria-hidden="true"></i> Recent Activity</h4>
+                        <ul class="timeline">
+                            <li class="done">
+                                <strong>Logged in</strong>
+                                <small>Yesterday at 8:15 AM</small>
+                            </li>
+                            <li class="done">
+                                <strong>Completed tour</strong>
+                                <small>3D2N Cebu Tour · Sep 28</small>
+                            </li>
+                            <li class="done">
+                                <strong>Updated availability</strong>
+                                <small>Sep 25, 2026</small>
+                            </li>
+                            <li class="done">
+                                <strong>Account created</strong>
+                                <small>Mar 12, 2024</small>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer modal-footer-wrap">
+                <div class="modal-footer-left">
+                    <button class="secondary-button" id="viewResetButton" type="button">
+                        <i data-lucide="key-round" aria-hidden="true"></i>
+                        Reset Password
+                    </button>
+                </div>
+                <div class="modal-footer-right">
+                    <button class="secondary-button" id="viewCloseButton" type="button">
+                        Close
+                    </button>
+                    <button class="primary-button" id="viewEditButton" type="button">
+                        <i data-lucide="pencil" aria-hidden="true"></i>
+                        Edit Staff
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/staff-accounts.js"></script>
+
+</body>
+</html>
