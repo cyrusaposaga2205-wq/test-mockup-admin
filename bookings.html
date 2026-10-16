@@ -7,6 +7,9 @@
 
     <title>Bookings | Uncle Ron's Travel and Tours</title>
 
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+
     <link rel="stylesheet" href="css/bookings.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -20,7 +23,7 @@
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
 
         <div class="sidebar-logo">
-            <img src="images/logo.png" alt="Uncle Ron's Travel and Tours">
+            <img src="images/Uncle_rons_logo-removebg-preview.png" alt="Uncle Ron's Travel and Tours">
             <h3>UNCLE RON'S</h3>
             <span>TRAVEL AND TOURS</span>
         </div>
@@ -44,10 +47,10 @@
                 <span class="nav-badge" id="bookingsBadge">8</span>
             </a>
 
-            <a href="customers.html" class="nav-link">
+            <!-- <a href="customers.html" class="nav-link">
                 <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
                 <span>Customers</span>
-            </a>
+            </a> -->
 
             <a href="reviews.html" class="nav-link">
                 <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
@@ -55,10 +58,10 @@
                 <span class="nav-badge">3</span>
             </a>
 
-            <a href="photos.html" class="nav-link">
+            <!-- <a href="photos.html" class="nav-link">
                 <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
                 <span>Photos</span>
-            </a>
+            </a> -->
 
             <a href="staff-accounts.html" class="nav-link">
                <span class="icon"><i data-lucide="user-round" aria-hidden="true"></i></span>
@@ -88,10 +91,10 @@
                 </div>
             </div>
 
-            <button class="logout-button" id="logoutButton" type="button">
-                <span class="logout-icon" aria-hidden="true">⇥</span>
-                <span class="logout-label">Logout</span>
-            </button>
+            <a href="login.html" class="logout-button" id="logoutButton">
+                <i data-lucide="log-out" aria-hidden="true"></i>
+                <span>Logout</span>
+            </a>
 
         </div>
 
@@ -340,6 +343,7 @@
                                 <th>Customer</th>
                                 <th>Package</th>
                                 <th>Tour Date</th>
+                                <th>Booking Type</th>
                                 <th>Pax</th>
                                 <th>Amount</th>
                                 <th>Guide</th>
@@ -368,6 +372,7 @@
                                 <td>Maria Santos</td>
                                 <td>3D2N Cebu Tour</td>
                                 <td>Oct 05, 2026</td>
+                                <td>Exclusive</td>
                                 <td>4</td>
                                 <td>₱20,392</td>
                                 <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Patrick</span></td>
@@ -398,6 +403,7 @@
                                 <td>John Dela Cruz</td>
                                 <td>4D3N Cebu-Bohol</td>
                                 <td>Oct 08, 2026</td>
+                                <td>Exclusive</td>
                                 <td>6</td>
                                 <td>₱45,588</td>
                                 <td><span class="guide-tag empty">Unassigned</span></td>
@@ -428,6 +434,7 @@
                                 <td>Ana Reyes</td>
                                 <td>Moalboal-Badian</td>
                                 <td>Oct 12, 2026</td>
+                                <td>Joiner</td>
                                 <td>5</td>
                                 <td>₱25,490</td>
                                 <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Rico</span></td>
@@ -458,6 +465,7 @@
                                 <td>Claire Tan</td>
                                 <td>Oslob-Simala</td>
                                 <td>Oct 15, 2026</td>
+                                <td>Exclusive</td>
                                 <td>3</td>
                                 <td>₱15,294</td>
                                 <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Carlo</span></td>
@@ -488,6 +496,7 @@
                                 <td>Mark Villanueva</td>
                                 <td>Moalboal-Badian</td>
                                 <td>Oct 18, 2026</td>
+                                <td>Joiner</td>
                                 <td>1</td>
                                 <td>₱3,500</td>
                                 <td><span class="guide-tag empty">Unassigned</span></td>
@@ -518,6 +527,7 @@
                                 <td>Sophia Lim</td>
                                 <td>4D3N Cebu-Bohol</td>
                                 <td>Oct 20, 2026</td>
+                                <td>Exclusive</td>
                                 <td>2</td>
                                 <td>₱15,196</td>
                                 <td><span class="guide-tag empty">—</span></td>
@@ -548,6 +558,7 @@
                                 <td>Daniel Ortiz</td>
                                 <td>Oslob-Simala</td>
                                 <td>Oct 22, 2026</td>
+                                <td>Joiner</td>
                                 <td>5</td>
                                 <td>₱25,490</td>
                                 <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Patrick</span></td>
@@ -578,6 +589,7 @@
                                 <td>Grace Bautista</td>
                                 <td>3D2N Cebu Tour</td>
                                 <td>Oct 25, 2026</td>
+                                <td>Exclusive</td>
                                 <td>4</td>
                                 <td>₱20,392</td>
                                 <td><span class="guide-tag"><i data-lucide="user-round" aria-hidden="true"></i> Lisa</span></td>

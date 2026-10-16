@@ -7,7 +7,11 @@
 
     <title>Settings | Uncle Ron's Travel and Tours</title>
 
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+
     <link rel="stylesheet" href="css/settings.css">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
@@ -20,7 +24,7 @@
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
 
         <div class="sidebar-logo">
-            <img src="images/logo.png" alt="Uncle Ron's Travel and Tours">
+            <img src="images/Uncle_rons_logo-removebg-preview.png" alt="Uncle Ron's Travel and Tours">
             <h3>UNCLE RON'S</h3>
             <span>TRAVEL AND TOURS</span>
         </div>
@@ -44,10 +48,10 @@
                 <span class="nav-badge">8</span>
             </a>
 
-            <a href="customers.html" class="nav-link">
+            <!-- <a href="customers.html" class="nav-link">
                 <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
                 <span>Customers</span>
-            </a>
+            </a> -->
 
             <a href="reviews.html" class="nav-link">
                 <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
@@ -55,10 +59,10 @@
                 <span class="nav-badge">6</span>
             </a>
 
-            <a href="photos.html" class="nav-link">
+            <!-- <a href="photos.html" class="nav-link">
                 <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
                 <span>Photos</span>
-            </a>
+            </a> -->
 
             <a href="staff-accounts.html" class="nav-link">
                 <span class="icon"><i data-lucide="user-round" aria-hidden="true"></i></span>
@@ -87,10 +91,10 @@
                 </div>
             </div>
 
-            <button class="logout-button" id="logoutButton" type="button">
-                <span class="logout-icon" aria-hidden="true">⇥</span>
-                <span class="logout-label">Logout</span>
-            </button>
+           <a href="login.html" class="logout-button" id="logoutButton">
+                <i data-lucide="log-out" aria-hidden="true"></i>
+                <span>Logout</span>
+            </a>
 
         </div>
 
@@ -213,10 +217,10 @@
                         <span>Security</span>
                     </button>
 
-                    <button class="settings-nav-item" data-section="appearance" type="button">
+                    <!-- <button class="settings-nav-item" data-section="appearance" type="button">
                         <i data-lucide="palette" aria-hidden="true"></i>
                         <span>Appearance</span>
-                    </button>
+                    </button> -->
 
                     <button class="settings-nav-item" data-section="team" type="button">
                         <i data-lucide="users" aria-hidden="true"></i>
@@ -404,6 +408,25 @@
                                     <option value="ceb">Cebuano</option>
                                 </select>
                             </div>
+
+                            <!-- RICH TEXT EDITOR FOR TERMS & CONDITIONS -->
+                                <div class="form-group full" style="margin-top: 15px;">
+                                    <label for="termsEditor">Terms & Conditions</label>
+                                    <textarea id="termsEditor">
+                                        <h3>1. Booking & Cancellation Policy</h3>
+                                        <p>Reservations require a 50% initial deposit. Cancellations made 7 days prior to tour date receive a 100% refund.</p>
+                                        <h3>2. Safety & Liability</h3>
+                                        <p>Guests must follow guide instructions during water activities (e.g., Canyoneering, Oslob Whale Shark viewing).</p>
+                                    </textarea>
+                                </div>
+
+                                <!-- RICH TEXT EDITOR FOR PRIVACY POLICY -->
+                                <div class="form-group full" style="margin-top: 15px;">
+                                    <label for="privacyEditor">Privacy & Refund Policy</label>
+                                    <textarea id="privacyEditor">
+                                        <p>We respect your privacy and process customer booking data strictly in compliance with data privacy regulations.</p>
+                                    </textarea>
+                                </div>
 
                         </div>
 
@@ -690,69 +713,247 @@
                     </section>
 
 
-                    <!-- =========================
-                         TEAM ACCESS
-                    ========================== -->
+                   <!-- =========================
+     TEAM ACCESS (RBAC)
+========================== -->
 
-                    <section class="settings-section" id="team" aria-labelledby="teamHeading">
+<section class="settings-section" id="team" aria-labelledby="teamHeading">
 
-                        <div class="section-header">
-                            <h2 id="teamHeading">Team Access</h2>
-                            <p>Manage who has access to the admin dashboard.</p>
+    <div class="section-header page-header-actions" style="justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div>
+            <h2 id="teamHeading">Team Access &amp; Permissions</h2>
+            <p>Manage member roles and system access controls.</p>
+        </div>
+
+        <!-- <button class="primary-button" id="inviteMemberButton" type="button">
+            <i data-lucide="user-plus" aria-hidden="true"></i>
+            Invite Member
+        </button> -->
+    </div>
+
+
+    <!-- SUB-TABS FOR ROLES VS MEMBERS -->
+
+    <div class="filter-tabs" style="margin-bottom: 20px; display: inline-flex; background: #f0f5fb; padding: 4px; border-radius: 8px;">
+        <button class="filter-tab active" id="tabMembers" type="button" style="padding: 8px 16px; border:0; border-radius:6px; font-weight:600; cursor:pointer;">
+            Active Members (3)
+        </button>
+        <button class="filter-tab" id="tabRoles" type="button" style="padding: 8px 16px; border:0; border-radius:6px; font-weight:600; cursor:pointer; background:transparent; color: var(--muted);">
+            Roles &amp; Policies (3)
+        </button>
+    </div>
+
+
+    <!-- PANEL 1: ACTIVE MEMBERS -->
+
+    <div id="membersPanel">
+        <div class="team-list" id="teamList">
+
+            <!-- Administrator -->
+            <div class="team-member" data-member-id="1">
+                <div class="team-avatar admin">A</div>
+                <div class="team-info">
+                    <strong>Administrator</strong>
+                    <small>admin@unclerons.com · Joined Aug 2026</small>
+                </div>
+                <span class="status vip">Admin — Full Access</span>
+                <button class="secondary-button configure-role-btn" data-role="Admin" data-name="Administrator" type="button" style="padding: 6px 10px; font-size: 11px;">
+                    <i data-lucide="shield-config" aria-hidden="true"></i>
+                    Permissions
+                </button>
+                <button class="icon-button" disabled title="System owner account cannot be deleted">
+                    <i data-lucide="lock" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <!-- Patrick Reyes -->
+            <div class="team-member" data-member-id="2">
+                <div class="team-avatar">P</div>
+                <div class="team-info">
+                    <strong>Patrick Reyes</strong>
+                    <small>patrick@unclerons.com · Joined Sep 2026</small>
+                </div>
+                <span class="status returning">Staff — Operations</span>
+                <button class="secondary-button configure-role-btn" data-role="Staff" data-name="Patrick Reyes" type="button" style="padding: 6px 10px; font-size: 11px;">
+                    <i data-lucide="sliders" aria-hidden="true"></i>
+                    Permissions
+                </button>
+                <button class="icon-button delete-button" title="Remove team member">
+                    <i data-lucide="user-minus" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <!-- Rico Mendoza -->
+            <div class="team-member" data-member-id="3">
+                <div class="team-avatar">R</div>
+                <div class="team-info">
+                    <strong>Rico Mendoza</strong>
+                    <small>rico@unclerons.com · Joined Sep 2026</small>
+                </div>
+                <span class="status returning">Staff — Operations</span>
+                <button class="secondary-button configure-role-btn" data-role="Staff" data-name="Rico Mendoza" type="button" style="padding: 6px 10px; font-size: 11px;">
+                    <i data-lucide="sliders" aria-hidden="true"></i>
+                    Permissions
+                </button>
+                <button class="icon-button delete-button" title="Remove team member">
+                    <i data-lucide="user-minus" aria-hidden="true"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- PANEL 2: ROLES & POLICIES -->
+
+    <div id="rolesPanel" style="display: none;">
+        <div class="data-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+
+            <!-- Admin Role Card -->
+            <div class="data-card" style="flex-direction: column; align-items: flex-start; padding: 18px;">
+                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                    <strong style="font-size: 14px; color: var(--primary);">Administrator</strong>
+                    <span class="status vip">Full Access</span>
+                </div>
+                <p style="font-size: 11px; color: var(--muted); margin-bottom: 14px;">Complete control over bookings, business settings, system security, and financial reports.</p>
+                <button class="secondary-button edit-role-permissions-btn" data-role="Admin" type="button" style="width: 100%;">
+                    <i data-lucide="edit-3" aria-hidden="true"></i> Edit Permissions
+                </button>
+            </div>
+
+            <!-- Staff Role Card -->
+            <div class="data-card" style="flex-direction: column; align-items: flex-start; padding: 18px;">
+                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                    <strong style="font-size: 14px; color: var(--primary);">Staff Member</strong>
+                    <span class="status returning">Standard</span>
+                </div>
+                <p style="font-size: 11px; color: var(--muted); margin-bottom: 14px;">Manages daily customer bookings, tour check-ins, and guest reviews. Cannot edit global policies.</p>
+                <button class="secondary-button edit-role-permissions-btn" data-role="Staff" type="button" style="width: 100%;">
+                    <i data-lucide="edit-3" aria-hidden="true"></i> Edit Permissions
+                </button>
+            </div>
+
+            <!-- Tour Guide Role Card -->
+            <div class="data-card" style="flex-direction: column; align-items: flex-start; padding: 18px;">
+                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                    <strong style="font-size: 14px; color: var(--primary);">Tour Guide</strong>
+                    <span class="status new">Restricted</span>
+                </div>
+                <p style="font-size: 11px; color: var(--muted); margin-bottom: 14px;">Read-only access restricted to assigned tour schedules and guest check-in rosters.</p>
+                <button class="secondary-button edit-role-permissions-btn" data-role="Guide" type="button" style="width: 100%;">
+                    <i data-lucide="edit-3" aria-hidden="true"></i> Edit Permissions
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ROLE PERMISSIONS MODAL
+========================== -->
+
+<div class="modal-backdrop" id="rbacModal" hidden>
+    <div class="modal modal-lg" role="dialog" aria-labelledby="rbacModalTitle" aria-modal="true">
+
+        <div class="modal-header">
+            <div>
+                <h2 id="rbacModalTitle">Configure Permissions</h2>
+                <p id="rbacModalSubtitle">Set access privileges for this role.</p>
+            </div>
+            <button class="modal-close" id="rbacModalClose" type="button" aria-label="Close">
+                <i data-lucide="x" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <form id="rbacForm">
+
+                <!-- Category 1: Bookings & Operations -->
+                <div style="margin-bottom: 20px;">
+                    <h4 style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 10px;">Bookings &amp; Operations</h4>
+                    <div style="display: grid; gap: 10px;">
+                        <div class="toggle-row" style="background: #f9fbff; border: 1px solid var(--border); padding: 10px 14px;">
+                            <div class="toggle-info">
+                                <strong>Edit Booking Details</strong>
+                                <small>Allow modifying guest counts, tour dates, and customer details.</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="perm_edit_bookings" checked>
+                                <span class="slider"></span>
+                            </label>
                         </div>
 
-
-                        <div class="team-list" id="teamList">
-
-                            <div class="team-member">
-                                <div class="team-avatar admin">A</div>
-                                <div class="team-info">
-                                    <strong>Administrator</strong>
-                                    <small>admin@unclerons.com</small>
-                                </div>
-                                <span class="status vip">Owner</span>
-                                <button class="icon-button" disabled title="You can't remove yourself">
-                                    <i data-lucide="lock" aria-hidden="true"></i>
-                                </button>
+                        <div class="toggle-row" style="background: #f9fbff; border: 1px solid var(--border); padding: 10px 14px;">
+                            <div class="toggle-info">
+                                <strong>Cancel &amp; Refund Bookings</strong>
+                                <small>Authorize processing customer cancellations and issuing refunds.</small>
                             </div>
+                            <label class="switch">
+                                <input type="checkbox" id="perm_cancel_bookings">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-
-                            <div class="team-member">
-                                <div class="team-avatar">P</div>
-                                <div class="team-info">
-                                    <strong>Patrick Reyes</strong>
-                                    <small>patrick@unclerons.com</small>
-                                </div>
-                                <span class="status returning">Staff</span>
-                                <button class="icon-button delete-button" title="Remove access">
-                                    <i data-lucide="user-minus" aria-hidden="true"></i>
-                                </button>
+                <!-- Category 2: Business & System Policies -->
+                <div style="margin-bottom: 20px;">
+                    <h4 style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 10px;">System &amp; Policies</h4>
+                    <div style="display: grid; gap: 10px;">
+                        <div class="toggle-row" style="background: #f9fbff; border: 1px solid var(--border); padding: 10px 14px;">
+                            <div class="toggle-info">
+                                <strong>Modify Terms &amp; Conditions Policy</strong>
+                                <small>Allow editing legal terms, privacy policies, and refund rules.</small>
                             </div>
-
-
-                            <div class="team-member">
-                                <div class="team-avatar">R</div>
-                                <div class="team-info">
-                                    <strong>Rico Mendoza</strong>
-                                    <small>rico@unclerons.com</small>
-                                </div>
-                                <span class="status returning">Staff</span>
-                                <button class="icon-button delete-button" title="Remove access">
-                                    <i data-lucide="user-minus" aria-hidden="true"></i>
-                                </button>
-                            </div>
-
+                            <label class="switch">
+                                <input type="checkbox" id="perm_edit_terms">
+                                <span class="slider"></span>
+                            </label>
                         </div>
 
-
-                        <div class="section-actions">
-                            <button class="secondary-button" id="inviteMemberButton" type="button">
-                                <i data-lucide="user-plus" aria-hidden="true"></i>
-                                Invite Member
-                            </button>
+                        <div class="toggle-row" style="background: #f9fbff; border: 1px solid var(--border); padding: 10px 14px;">
+                            <div class="toggle-info">
+                                <strong>Manage Staff Accounts</strong>
+                                <small>Create new staff logins and reset team passwords.</small>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="perm_manage_staff">
+                                <span class="slider"></span>
+                            </label>
                         </div>
+                    </div>
+                </div>
 
-                    </section>
+                <!-- Category 3: Financials & Reports -->
+                <div>
+                    <h4 style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 10px;">Financials &amp; Analytics</h4>
+                    <div class="toggle-row" style="background: #f9fbff; border: 1px solid var(--border); padding: 10px 14px;">
+                        <div class="toggle-info">
+                            <strong>Export Financial Reports</strong>
+                            <small>Download revenue charts, booking analytics, and CSV exports.</small>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="perm_export_reports">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="secondary-button" id="rbacModalCancel" type="button">Cancel</button>
+            <button class="primary-button" id="rbacModalSave" type="button">
+                <i data-lucide="check" aria-hidden="true"></i> Save Permissions
+            </button>
+        </div>
+
+    </div>
+</div>
 
 
                     <!-- =========================

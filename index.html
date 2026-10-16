@@ -8,6 +8,9 @@
 
     <title>Admin Dashboard | Uncle Ron's Travel and Tours</title>
 
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -20,13 +23,12 @@
 
     <aside
         class="sidebar"
-        id="sidebar"
-        aria-label="Main navigation">
+        id="sidebar">
 
         <div class="sidebar-logo">
 
             <img
-                src="images/logo.png"
+                src="images/Uncle_rons_logo-removebg-preview.png"
                 alt="Uncle Ron's Travel and Tours"
             >
 
@@ -57,10 +59,10 @@
                 <span class="nav-badge" id="bookingsBadge">8</span>
             </a>
 
-            <a href="customers.html" class="nav-link">
+            <!-- <a href="customers.html" class="nav-link">
                 <span class="icon"><i data-lucide="users" aria-hidden="true"></i></span>
                 <span>Customers</span>
-            </a>
+            </a> -->
 
             <a href="reviews.html" class="nav-link">
                 <span class="icon"><i data-lucide="star" aria-hidden="true"></i></span>
@@ -68,10 +70,10 @@
                 <span class="nav-badge" id="reviewsBadge">3</span>
             </a>
 
-            <a href="photos.html" class="nav-link">
+            <!-- <a href="photos.html" class="nav-link">
                 <span class="icon"><i data-lucide="images" aria-hidden="true"></i></span>
                 <span>Photos</span>
-            </a>
+            </a> -->
 
             <a href="staff-accounts.html" class="nav-link">
                 <span class="icon"><i data-lucide="user-round" aria-hidden="true"></i></span>
@@ -107,15 +109,10 @@
             </div>
 
 
-            <button
-                class="logout-button"
-                id="logoutButton"
-                type="button">
-
-                <span class="logout-icon" aria-hidden="true">⇥</span>
-                <span class="logout-label">Logout</span>
-
-            </button>
+            <a href="login.html" class="logout-button" id="logoutButton">
+                <i data-lucide="log-out" aria-hidden="true"></i>
+                <span>Logout</span>
+            </a>
 
         </div>
 
@@ -166,7 +163,7 @@
 
             <div class="topbar-right">
 
-                <button
+                <!-- <button
                     class="notification-button"
                     id="notificationButton"
                     type="button"
@@ -178,7 +175,37 @@
                         3
                     </span>
 
-                </button>
+                </button> -->
+
+                 <div class="notification-wrapper" style="position: relative;">
+                    <button class="notification-button" id="notificationButton" type="button" aria-label="Toggle notifications">
+                        <i data-lucide="bell" aria-hidden="true"></i>
+                        <span>3</span>
+                    </button>
+                    
+                    <div class="notification-dropdown" id="notificationDropdown" hidden>
+                        <div class="notification-header">
+                            <strong>Notifications</strong>
+                            <span class="notification-badge-count">2 New</span>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon bg-blue"><i data-lucide="calendar-check"></i></div>
+                                <div class="notification-content">
+                                    <p><strong>Juan Dela Cruz</strong> booked the <strong>Oslob Tour</strong> (Joiner).</p>
+                                    <small>5 minutes ago</small>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon bg-green"><i data-lucide="map"></i></div>
+                                <div class="notification-content">
+                                    <p><strong>Maria Santos</strong> reserved an exclusive <strong>Badian Tour</strong>.</p>
+                                    <small>1 hour ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 <button
@@ -192,7 +219,7 @@
                         A
                     </div>
 
-                    <div class="admin-profile-info">
+                    <a href="settings.html" class="admin-profile-info">
 
                         <strong>
                             Administrator
@@ -202,7 +229,7 @@
                             Admin
                         </small>
 
-                    </div>
+                    </a>
 
                     <i data-lucide="chevron-down" class="dropdown-arrow" aria-hidden="true"></i>
 
@@ -255,7 +282,7 @@
 
             <!-- STATISTICS -->
 
-            <section class="stats-grid" aria-label="Key statistics">
+            <!-- <section class="stats-grid" aria-label="Key statistics">
 
 
                 <a href="bookings.html" class="stat-card blue-card">
@@ -308,473 +335,479 @@
                     </div>
                 </a>
 
+            </section> -->
+
+            <!-- STATISTICS -->
+            <section class="stats-grid">
+                <div class="stat-card blue-card">
+                    <div class="stat-icon"><i data-lucide="map" aria-hidden="true"></i></div>
+                    <div class="stat-content">
+                        <span>Today's Tours</span>
+                        <h2>8</h2>
+                        <small class="positive">↑ 2 this week</small>
+                    </div>
+                </div>
+                <div class="stat-card yellow-card">
+                    <div class="stat-icon"><i data-lucide="clock-3" aria-hidden="true"></i></div>
+                    <div class="stat-content">
+                        <span>Pending Bookings</span>
+                        <h2>3</h2>
+                        <small>Tours starting today</small>
+                    </div>
+                </div>
+                <div class="stat-card green-card">
+                    <div class="stat-icon"><i data-lucide="check" aria-hidden="true"></i></div>
+                    <div class="stat-content">
+                        <span>Guests Today</span>
+                        <h2>19</h2>
+                        <small>Across all tours</small>
+                    </div>
+                </div>
+                <div class="stat-card purple-card">
+                    <div class="stat-icon"><i data-lucide="star" aria-hidden="true"></i></div>
+                    <div class="stat-content">
+                        <span>Total Reviews</span>
+                        <h2 data-count="186">0</h2>
+                        <small>4.9 average rating</small>
+                    </div>
+                </div>
             </section>
 
-
-            <!-- MAIN DASHBOARD GRID -->
-
+                <!-- DASHBOARD GRID -->
             <section class="dashboard-grid">
-
-
-                <!-- LEFT -->
-
-                <div class="dashboard-left">
-
-
-                    <!-- RECENT BOOKINGS -->
-
+                <div class="dashboard-left" style="grid-column: 1 / -1;">
+                    <!-- TODAY'S TOURS TABLE -->
                     <div class="dashboard-card">
-
                         <div class="card-header">
-
-                            <div>
-                                <h2>Recent Bookings</h2>
-                                <p>Latest customer reservations</p>
-                            </div>
-
-                            <a href="bookings.html">
-                                View All
-                                <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="table-wrapper">
-
-                            <table id="bookingsTable" class="data-table">
-
-                                <thead>
-                                    <tr>
-                                        <th>Booking ID</th>
-                                        <th>Customer</th>
-                                        <th>Package</th>
-                                        <th>Tour Date</th>
-                                        <th>Pax</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-
-
-                                <tbody>
-
-                                    <tr>
-                                        <td><strong>BK-001248</strong></td>
-                                        <td>Maria Santos</td>
-                                        <td>3D2N Cebu Tour</td>
-                                        <td>Oct 05, 2026</td>
-                                        <td>4</td>
-                                        <td>₱20,392</td>
-                                        <td><span class="status confirmed">Confirmed</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><strong>BK-001247</strong></td>
-                                        <td>John Dela Cruz</td>
-                                        <td>4D3N Cebu-Bohol</td>
-                                        <td>Oct 08, 2026</td>
-                                        <td>6</td>
-                                        <td>₱45,588</td>
-                                        <td><span class="status pending">Pending</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><strong>BK-001246</strong></td>
-                                        <td>Ana Reyes</td>
-                                        <td>Moalboal-Badian</td>
-                                        <td>Oct 12, 2026</td>
-                                        <td>5</td>
-                                        <td>₱25,490</td>
-                                        <td><span class="status confirmed">Confirmed</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><strong>BK-001245</strong></td>
-                                        <td>Claire Tan</td>
-                                        <td>Oslob-Simala</td>
-                                        <td>Oct 15, 2026</td>
-                                        <td>3</td>
-                                        <td>₱15,294</td>
-                                        <td><span class="status completed">Completed</span></td>
-                                    </tr>
-
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- TOUR PACKAGES -->
-
-                    <div class="dashboard-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <h2>Tour Packages</h2>
-                                <p>Manage your available packages</p>
-                            </div>
-
-                            <button
-                                class="primary-button"
-                                id="addPackageButton"
-                                type="button">
-
-                                <i data-lucide="plus" aria-hidden="true"></i>
-                                Add Tour Package
-
-                            </button>
-
-                        </div>
-
-
-                        <div class="package-list" id="packageList">
-
-
-                            <div class="package-row" data-package="3D2N Cebu Tour">
-
-                                <div class="package-image" aria-hidden="true">
-                                    <i data-lucide="map-pin"></i>
-                                </div>
-
-                                <div class="package-info">
-                                    <strong>3D2N Cebu Tour</strong>
-                                    <span>Cebu City · 3 Days / 2 Nights</span>
-                                </div>
-
-                                <div class="package-price">
-                                    ₱5,098<span>/head</span>
-                                </div>
-
-                                <span class="package-status active">
-                                    Active
-                                </span>
-
-                                <button class="edit-button" type="button">
-                                    <i data-lucide="pencil" aria-hidden="true"></i>
-                                    Edit
-                                </button>
-
-                            </div>
-
-
-                            <div class="package-row" data-package="Moalboal-Badian">
-
-                                <div class="package-image" aria-hidden="true">
-                                    <i data-lucide="waves"></i>
-                                </div>
-
-                                <div class="package-info">
-                                    <strong>Moalboal-Badian</strong>
-                                    <span>South Cebu · Day Tour</span>
-                                </div>
-
-                                <div class="package-price">
-                                    ₱3,500<span>/head</span>
-                                </div>
-
-                                <span class="package-status active">
-                                    Active
-                                </span>
-
-                                <button class="edit-button" type="button">
-                                    <i data-lucide="pencil" aria-hidden="true"></i>
-                                    Edit
-                                </button>
-
-                            </div>
-
-
-                            <div class="package-row" data-package="4D3N Cebu-Bohol">
-
-                                <div class="package-image" aria-hidden="true">
-                                    <i data-lucide="palmtree"></i>
-                                </div>
-
-                                <div class="package-info">
-                                    <strong>4D3N Cebu-Bohol</strong>
-                                    <span>Cebu & Bohol · 4 Days / 3 Nights</span>
-                                </div>
-
-                                <div class="package-price">
-                                    ₱7,598<span>/head</span>
-                                </div>
-
-                                <span class="package-status active">
-                                    Active
-                                </span>
-
-                                <button class="edit-button" type="button">
-                                    <i data-lucide="pencil" aria-hidden="true"></i>
-                                    Edit
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- RIGHT -->
-
-                <div class="dashboard-right">
-
-
-                    <!-- QUICK ACTIONS -->
-
-                    <div class="dashboard-card">
-
-                        <div class="card-header">
-                            <div>
-                                <h2>Quick Actions</h2>
-                                <p>Common administrative tasks</p>
-                            </div>
-                        </div>
-
-
-                        <div class="quick-actions">
-
-                            <button
-                                class="quick-action"
-                                type="button"
-                                data-action="Add Tour Package"
-                                data-href="tour-packages.html?action=add">
-
-                                <span class="quick-action-icon" aria-hidden="true">
-                                    <i data-lucide="plus"></i>
-                                </span>
-
-                                <small>Add Package</small>
-
-                            </button>
-
-
-                            <button
-                                class="quick-action"
-                                type="button"
-                                data-action="View Bookings"
-                                data-href="bookings.html">
-
-                                <span class="quick-action-icon" aria-hidden="true">
-                                    <i data-lucide="calendar-check"></i>
-                                </span>
-
-                                <small>Bookings</small>
-
-                            </button>
-
-
-                            <button
-                                class="quick-action"
-                                type="button"
-                                data-action="Add Customer"
-                                data-href="customers.html?action=add">
-
-                                <span class="quick-action-icon" aria-hidden="true">
-                                    <i data-lucide="user-round-plus"></i>
-                                </span>
-
-                                <small>Customer</small>
-
-                            </button>
-
-
-                            <button
-                                class="quick-action"
-                                type="button"
-                                data-action="View Reports"
-                                data-href="reports.html">
-
-                                <span class="quick-action-icon" aria-hidden="true">
-                                    <i data-lucide="chart-no-axes-column-increasing"></i>
-                                </span>
-
-                                <small>Reports</small>
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- RECENT REVIEWS -->
-
-                    <div class="dashboard-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <h2>Recent Reviews</h2>
-                                <p>Latest customer feedback</p>
-                            </div>
-
-                            <a href="reviews.html">
-                                View All
-                                <i data-lucide="arrow-right" aria-hidden="true"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="review">
-
-                            <div class="review-avatar" aria-hidden="true">M</div>
-
-                            <div class="review-content">
-
-                                <div class="review-top">
-                                    <strong>Maria Santos</strong>
-                                    <span aria-label="5 out of 5 stars">★★★★★</span>
-                                </div>
-
-                                <p>
-                                    "Very accommodating staff
-                                    and our Cebu tour was amazing!"
-                                </p>
-
-                                <small>2 hours ago</small>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="review">
-
-                            <div class="review-avatar" aria-hidden="true">J</div>
-
-                            <div class="review-content">
-
-                                <div class="review-top">
-                                    <strong>James Lee</strong>
-                                    <span aria-label="5 out of 5 stars">★★★★★</span>
-                                </div>
-
-                                <p>
-                                    "The tour guide was very helpful.
-                                    Highly recommended!"
-                                </p>
-
-                                <small>Yesterday</small>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="review">
-
-                            <div class="review-avatar" aria-hidden="true">A</div>
-
-                            <div class="review-content">
-
-                                <div class="review-top">
-                                    <strong>Angela Cruz</strong>
-                                    <span aria-label="4 out of 5 stars">★★★★☆</span>
-                                </div>
-
-                                <p>
-                                    "Good experience and smooth booking."
-                                </p>
-
-                                <small>2 days ago</small>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- TODAY'S TOURS -->
-
-                    <div class="dashboard-card">
-
-                        <div class="card-header">
-
                             <div>
                                 <h2>Today's Tours</h2>
-                                <p id="todayDate">Loading...</p>
+                                <p>Example dashboard table</p>
                             </div>
-
-                            <span class="tour-count">
-                                5 Tours
-                            </span>
-
                         </div>
-
-
-                        <div class="today-tour">
-
-                            <div class="tour-time">
-                                06:00
-                                <small>AM</small>
-                            </div>
-
-                            <div class="tour-details">
-                                <strong>Oslob-Simala</strong>
-                                <span>4 pax · Patrick</span>
-                            </div>
-
-                            <span class="tour-status completed">
-                                Departed
-                            </span>
-
+                        <div class="table-wrapper">
+                            <table id="toursTable">
+                                <thead>
+                                    <tr>
+                                            <th>TIME</strong> </th>
+                                            <th>TOUR PACKAGE</th>
+                                            <th>LEAD GUEST</th>
+                                            <th>GUESTS/PAX</th>
+                                            <th>BOOKING TYPE</th>
+                                            <th>STATUS</th>
+                                            <th class="actions-header">ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>5:00 AM</td>
+                                        <td>3D2N Cebu Tour</td>
+                                        <td>Juan Dela Cruz</td>
+                                        <td>4</td>
+                                        <td>Joiner</td>
+                                        <td><span class="status upcoming">Upcoming</span></td>
+                                        <td>
+                                            <div class="action-cell">
+                                                <button class="table-action-icon-btn view-btn" title="View Details"><i data-lucide="eye"></i></button>
+                                                <button class="table-action-icon-btn edit-btn" title="Edit Tour"><i data-lucide="pencil"></i></button>
+                                                <button class="table-action-icon-btn delete-btn" title="Delete Tour"><i data-lucide="trash-2"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6:00 AM</td>
+                                        <td>4D3N Cebu-Bohol Tour</td>
+                                        <td>Maria Santos</td>
+                                        <td>6</td>
+                                        <td>Exclusive</td>
+                                        <td><span class="status departed">Departed</span></td>
+                                        <td>
+                                            <div class="action-cell">
+                                                <button class="table-action-icon-btn view-btn" title="View Details"><i data-lucide="eye"></i></button>
+                                                <button class="table-action-icon-btn edit-btn" title="Edit Tour"><i data-lucide="pencil"></i></button>
+                                                <button class="table-action-icon-btn delete-btn" title="Delete Tour"><i data-lucide="trash-2"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8:00 AM</td>
+                                        <td>5D3N Cebu Tour</td>
+                                        <td>Pedro Reyes</td>
+                                        <td>3</td>
+                                        <td>Joiner</td>
+                                        <td><span class="status ongoing">Ongoing</span></td>
+                                        <td>
+                                            <div class="action-cell">
+                                                <button class="table-action-icon-btn view-btn" title="View Details"><i data-lucide="eye"></i></button>
+                                                <button class="table-action-icon-btn edit-btn" title="Edit Tour"><i data-lucide="pencil"></i></button>
+                                                <button class="table-action-icon-btn delete-btn" title="Delete Tour"><i data-lucide="trash-2"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="empty-row" hidden>
+                                        <td colspan="7">
+                                            <div class="empty-state-content">
+                                                <i data-lucide="calendar-x" aria-hidden="true"></i>
+                                                <h3>No bookings found</h3>
+                                                <p>Try a different filter or search keyword.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-
-                        <div class="today-tour">
-
-                            <div class="tour-time">
-                                08:00
-                                <small>AM</small>
-                            </div>
-
-                            <div class="tour-details">
-                                <strong>City &amp; Uphill</strong>
-                                <span>5 pax · Rico</span>
-                            </div>
-
-                            <span class="tour-status ongoing">
-                                Ongoing
-                            </span>
-
-                        </div>
-
-
-                        <div class="today-tour">
-
-                            <div class="tour-time">
-                                10:00
-                                <small>AM</small>
-                            </div>
-
-                            <div class="tour-details">
-                                <strong>Cebu-Bohol</strong>
-                                <span>10 pax · Carlo</span>
-                            </div>
-
-                            <span class="tour-status upcoming">
-                                Upcoming
-                            </span>
-
-                        </div>
-
                     </div>
 
+                    <!-- UPCOMING TOURS TABLE -->
+                    <div class="dashboard-card mt-4">
+                        <div class="card-header">
+                            <div>
+                                <h2>Upcoming Tours</h2>
+                                <p>Example dashboard table</p>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="upcomingToursTable">
+                                <thead>
+                                    <tr>
+                                        <th>TIME</th>
+                                        <th>TOUR PACKAGE</th>
+                                        <th>LEAD GUEST</th>
+                                        <th>GUESTS/PAX</th>
+                                        <th>BOOKING TYPE</th>
+                                        <th>STATUS</th>
+                                        <th class="actions-header">ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Oct 12, 2026</td>
+                                        <td>2D1N Cebu Tour</td>
+                                        <td>Ana Garcia</td>
+                                        <td>5</td>
+                                        <td>Joiner</td>
+                                        <td><span class="status confirmed">Confirmed</span></td>
+                                        <td>
+                                            <div class="action-cell">
+                                                <button class="table-action-icon-btn view-btn" title="View Details"><i data-lucide="eye"></i></button>
+                                                <button class="table-action-icon-btn edit-btn" title="Edit Booking"><i data-lucide="pencil"></i></button>
+                                                <button class="table-action-icon-btn delete-btn" title="Cancel Booking"><i data-lucide="trash-2"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 13, 2026</td>
+                                        <td>1D Cebu Tour</td>
+                                        <td>Mark Lopez</td>
+                                        <td>10</td>
+                                        <td>Exclusive</td>
+                                        <td><span class="status pending">Pending</span></td>
+                                        <td>
+                                            <div class="action-cell">
+                                                <button class="table-action-icon-btn view-btn" title="View Details"><i data-lucide="eye"></i></button>
+                                                <button class="table-action-icon-btn edit-btn" title="Edit Booking"><i data-lucide="pencil"></i></button>
+                                                <button class="table-action-icon-btn delete-btn" title="Cancel Booking"><i data-lucide="trash-2"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oct 14, 2026</td>
+                                        <td>3D1N Cebu Tour</td>
+                                        <td>Ella Cruz</td>
+                                        <td>4</td>
+                                        <td>Joiner</td>
+                                        <td><span class="status confirmed">Confirmed</span></td>
+                                        <td>
+                                            <div class="action-cell">
+                                                <button class="table-action-icon-btn view-btn" title="View Details"><i data-lucide="eye"></i></button>
+                                                <button class="table-action-icon-btn edit-btn" title="Edit Booking"><i data-lucide="pencil"></i></button>
+                                                <button class="table-action-icon-btn delete-btn" title="Cancel Booking"><i data-lucide="trash-2"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="empty-row" hidden>
+                                        <td colspan="7">
+                                            <div class="empty-state-content">
+                                                <i data-lucide="calendar-x" aria-hidden="true"></i>
+                                                <h3>No bookings found</h3>
+                                                <p>Try a different filter or search keyword.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
 
+    <!-- VIEW DETAILS MODAL -->
+    <div class="modal-backdrop" id="viewModalBackdrop" hidden aria-hidden="true">
+        <section class="modal modal-lg" role="dialog" aria-modal="true" aria-labelledby="viewModalBookingId">
+            <header class="modal-header-dark">
+                <div class="header-dark-content">
+                    <div class="header-dark-title">
+                        <i data-lucide="eye" class="header-icon"></i>
+                        <div>
+                            <h2 id="viewModalBookingId">Booking #2026-8671</h2>
+                            <p id="viewModalReservedDate">Reserved on Oct 4, 2026</p>
+                        </div>
+                    </div>
+                    <span id="viewModalConfirmedBadge" class="badge-status confirmed">Confirmed</span>
+                </div>
+                <button class="modal-close dark-close" id="viewModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x"></i>
+                </button>
+            </header>
+
+            <div class="modal-body-scroll">
+                <div class="view-details-grid">
+                    <div class="details-card">
+                        <h3 class="card-title">Tour Details</h3>
+                        <div class="detail-group">
+                            <label>Package</label>
+                            <p id="viewModalPackage" class="detail-value-bold">Private Oslob Tour</p>
+                        </div>
+                        <div class="detail-group">
+                            <label>Tour Date</label>
+                            <p id="viewModalTourDate" class="detail-value">Oct 11, 2026</p>
+                        </div>
+                        <div class="detail-group">
+                            <label>Departure</label>
+                            <p id="viewModalDeparture" class="detail-value">5:00 AM</p>
+                        </div>
+                        <div class="detail-group">
+                            <label>Booking Type</label>
+                            <p id="viewModalBookingType" class="detail-value">Exclusive</p>
+                        </div>
+                        <div class="detail-group">
+                            <label>Guests</label>
+                            <p id="viewModalGuests" class="detail-value">2 Adults</p>
+                        </div>
+                        <div class="detail-group">
+                            <label>Tour Status</label>
+                            <p><span id="viewModalTourStatus" class="status upcoming">Upcoming</span></p>
+                        </div>
+                    </div>
+
+                    <div class="details-card">
+                        <h3 class="card-title">Payment Summary</h3>
+                        <div class="summary-row">
+                            <span>Package</span>
+                            <span id="viewModalPackagePrice">₱7,400.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Add-on</span>
+                            <span id="viewModalAddonPrice">₱1,000.00</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <strong>Total</strong>
+                            <strong id="viewModalTotalPrice">₱8,400.00</strong>
+                        </div>
+                        <div class="summary-row">
+                            <span>Paid</span>
+                            <span id="viewModalPaidPrice" class="text-dark">₱4,200.00</span>
+                        </div>
+                        <div class="summary-row balance-row">
+                            <span class="text-danger">Balance</span>
+                            <strong id="viewModalBalancePrice" class="text-danger">₱4,200.00</strong>
+                        </div>
+                        <small class="text-muted mt-2 d-block">Payment details are read-only.</small>
+                    </div>
                 </div>
 
-            </section>
+                <div class="details-card full-width mt-3">
+                    <h3 class="card-title">Pickup & Contact Details</h3>
+                    <div class="contact-details-list">
+                        <div class="contact-row">
+                            <span>Lead Guest</span>
+                            <strong id="viewModalGuestName">Dadas Santos</strong>
+                        </div>
+                        <div class="contact-row">
+                            <span>Email</span>
+                            <span id="viewModalGuestEmail">dadas@gmail.com</span>
+                        </div>
+                        <div class="contact-row">
+                            <span>Contact</span>
+                            <span id="viewModalGuestPhone">+63 912 345 6789</span>
+                        </div>
+                        <div class="contact-row">
+                            <span>Pickup Location</span>
+                            <span id="viewModalPickup">Quest Hotel Cebu – Main Lobby</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <footer class="modal-footer-custom">
+                <button class="secondary-button icon-btn" id="viewModalPrintBtn" type="button"><i data-lucide="printer"></i> Print</button>
+                <button class="primary-button dark-btn" id="viewModalEditSwitchBtn" type="button">Edit Booking</button>
+                <button class="secondary-button" id="viewModalCloseBtn" type="button">Close</button>
+            </footer>
+        </section>
+    </div>
+
+    <!-- EDIT BOOKING MODAL -->
+    <div class="modal-backdrop" id="editModalBackdrop" hidden aria-hidden="true">
+        <section class="modal modal-lg edit-booking-modal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+            <header class="modal-header-dark">
+                <div class="header-dark-content">
+                    <div class="header-dark-title">
+                        <i data-lucide="calendar" class="header-icon"></i>
+                        <div>
+                            <h2 id="editModalTitle">Edit Booking</h2>
+                            <p id="editModalSubtitle">Today's Tours · Staff Dashboard</p>
+                            <small id="editModalInfoTag">Private Oslob Tour · October 11, 2026 · 5:00 AM</small>
+                        </div>
+                    </div>
+                    <span id="editModalBookingNumberTag" class="booking-tag">#2026-8671</span>
+                </div>
+                <button class="modal-close dark-close" id="editModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x"></i>
+                </button>
+            </header>
+
+            <form id="editBookingForm" class="modal-form">
+                <div class="modal-body-scroll">
+                    <section class="form-section">
+                        <h3 class="section-title">1. Booking Information</h3>
+                        <div class="info-grid">
+                            <div>
+                                <label>Booking Number</label>
+                                <strong id="editInfoBookingNum">#2026-8671</strong>
+                            </div>
+                            <div>
+                                <label>Booking Type</label>
+                                <strong id="editInfoBookingType">Exclusive</strong>
+                            </div>
+                            <div>
+                                <label>Tour Package</label>
+                                <strong id="editInfoPackage">Private Oslob Tour</strong>
+                            </div>
+                            <div>
+                                <label>Scheduled Departure</label>
+                                <strong id="editInfoDeparture">5:00 AM</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr class="section-divider">
+
+                    <section class="form-section">
+                        <h3 class="section-title">2. Guest Details</h3>
+                        <div class="form-group mb-3">
+                            <label for="editGuestName">Lead Guest Name</label>
+                            <input type="text" id="editGuestName" value="Dadas Santos" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="editContactNumber">Contact Number</label>
+                                <input type="text" id="editContactNumber" value="0917 123 4567" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editGuestCount">Guest Count</label>
+                                <input type="number" id="editGuestCount" value="2" required>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="editPickupLocation">Pickup Location</label>
+                            <input type="text" id="editPickupLocation" value="Quest Hotel Cebu" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editSpecialRequests">Special Requests</label>
+                            <textarea id="editSpecialRequests" rows="3" placeholder="Enter any special requests..."></textarea>
+                        </div>
+                    </section>
+
+                    <hr class="section-divider">
+
+                    <section class="form-section">
+                        <h3 class="section-title">3. Status Management</h3>
+                        <div class="form-group mb-3">
+                            <label for="editBookingStatus">Booking Status</label>
+                            <select id="editBookingStatus">
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                            <small class="help-text">Controls whether the reservation is active, cancelled, or completed.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTourStatus">Tour Status</label>
+                            <select id="editTourStatus">
+                                <option value="Upcoming">Upcoming</option>
+                                <option value="Departed">Departed</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                            <small class="help-text">Tracks the actual progress of the tour. This is separate from Booking Status.</small>
+                        </div>
+                    </section>
+
+                    <hr class="section-divider">
+
+                    <section class="form-section">
+                        <h3 class="section-title">4. Payment Summary</h3>
+                        <div class="summary-list">
+                            <div class="summary-item">
+                                <span>Total Amount</span>
+                                <strong id="editSummaryTotal">₱8,400.00</strong>
+                            </div>
+                            <div class="summary-item">
+                                <span>Amount Paid</span>
+                                <strong id="editSummaryPaid" class="text-success">₱4,200.00</strong>
+                            </div>
+                            <div class="summary-item">
+                                <span>Remaining Balance</span>
+                                <strong id="editSummaryBalance">₱4,200.00</strong>
+                            </div>
+                            <div class="summary-item">
+                                <span>Payment Status</span>
+                                <span id="editSummaryPaymentBadge" class="badge-payment partial">Partially Paid</span>
+                            </div>
+                        </div>
+                        <small class="help-text mt-2">Read-only: payment records and totals are managed by the payment system and pricing rules.</small>
+                    </section>
+                </div>
+
+                <footer class="modal-footer-custom">
+                    <button class="secondary-button rounded-btn" id="editModalDiscardBtn" type="button">Discard</button>
+                    <button class="primary-button dark-btn rounded-btn" type="submit">Save Changes</button>
+                </footer>
+            </form>
+        </section>
+    </div>
+
+    <!-- DELETE CONFIRMATION MODAL -->
+    <div class="modal-backdrop" id="deleteModalBackdrop" hidden aria-hidden="true">
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+            <header class="modal-header-dark">
+                <div class="header-dark-content">
+                    <div class="header-dark-title">
+                        <i data-lucide="alert-triangle" class="header-icon"></i>
+                        <div>
+                            <h2 id="deleteModalTitle">Delete Booking</h2>
+                            <p>Are you sure you want to delete this booking?</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="modal-close dark-close" id="deleteModalClose" type="button" aria-label="Close dialog">
+                    <i data-lucide="x"></i>
+                </button>
+            </header>
+            <div class="modal-body-scroll">
+                <p id="deleteModalMessage" class="text-muted">This action cannot be undone. The booking record will be permanently removed.</p>
+            </div>
+            <footer class="modal-footer-custom">
+                <button class="secondary-button" id="deleteModalCancelBtn" type="button">Cancel</button>
+                <button class="primary-button" id="deleteModalConfirmBtn" type="button" style="background: var(--red); border: 0;">Delete</button>
+            </footer>
+        </section>
+    </div>
+
+    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="false"></div>
+                   
+                    
         </section>
 
     </main>

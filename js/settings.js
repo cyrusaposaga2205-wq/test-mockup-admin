@@ -569,3 +569,139 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* =========================
+   TINYMCE RICH TEXT EDITORS
+========================== */
+function initRichTextEditors() {
+    if (window.tinymce) {
+        tinymce.init({
+            selector: '#termsEditor, #privacyEditor',
+            height: 280,
+            menubar: false,
+            plugins: 'lists link code preview wordcount',
+            toolbar: 'undo redo | blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | link code preview',
+            content_style: 'body { font-family: "Poppins", sans-serif; font-size: 13px; color: #18324c; }',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save(); // Sync editor content back to standard textarea
+                });
+            }
+        });
+    }
+}
+
+// Call on page load
+initRichTextEditors();
+
+/* =========================
+   SAVE BUSINESS SETTINGS
+========================== */
+document.getElementById("saveBusinessSettingsBtn")?.addEventListener("click", () => {
+    // Save TinyMCE content to textareas
+    if (window.tinymce) {
+        tinymce.triggerSave();
+    }
+
+    const businessData = {
+        name: document.getElementById("businessName")?.value,
+        email: document.getElementById("businessEmail")?.value,
+        phone: document.getElementById("businessPhone")?.value,
+        address: document.getElementById("businessAddress")?.value,
+        terms: document.getElementById("termsEditor")?.value,
+        privacy: document.getElementById("privacyEditor")?.value
+    };
+
+    console.log("Saved Business Info:", businessData);
+    showToast("Business information and policies updated successfully!", "success");
+});
+
+/* =========================
+   TEAM ACCESS & RBAC LOGIC
+========================== */
+
+// 1. Sub-Tab Toggle (Members vs Roles)
+const tabMembers = document.getElementById("tabMembers");
+const tabRoles = document.getElementById("tabRoles");
+const membersPanel = document.getElementById("membersPanel");
+const rolesPanel = document.getElementById("rolesPanel");
+
+tabMembers?.addEventListener("click", () => {
+    tabMembers.classList.add("active");
+    tabMembers.style.background = "#ffffff";
+    tabMembers.style.color = "var(--blue)";
+
+    tabRoles.classList.remove("active");
+    tabRoles.style.background = "transparent";
+    tabRoles.style.color = "var(--muted)";
+
+    membersPanel.style.display = "block";
+    rolesPanel.style.display = "none";
+});
+
+tabRoles?.addEventListener("click", () => {
+    tabRoles.classList.add("active");
+    tabRoles.style.background = "#ffffff";
+    tabRoles.style.color = "var(--blue)";
+
+    tabMembers.classList.remove("active");
+    tabMembers.style.background = "transparent";
+    tabMembers.style.color = "var(--muted)";
+
+    rolesPanel.style.display = "block";
+    membersPanel.style.display = "none";
+});
+
+
+// 2. Permission Modal Control
+const rbacModal = document.getElementById("rbacModal");
+const rbacModalTitle = document.getElementById("rbacModalTitle");
+const rbacModalSub = document.getElementById("rbacModalSubtitle");
+
+function openRbacModal(roleName, targetUser = null) {
+    if (!rbacModal) return;
+
+    if (targetUser) {
+        rbacModalTitle.textContent = `Permissions: ${targetUser}`;
+        rbacModalSub.textContent = `Customizing access rights for ${targetUser} (${roleName} role).`;
+    } else {
+        rbacModalTitle.textContent = `Role Permissions: ${roleName}`;
+        rbacModalSub.textContent = `System-wide access template for the ${roleName} role.`;
+    }
+
+    // Configure preset toggles based on role
+    const isStaff = roleName === "Staff";
+    const isAdmin = roleName === "Admin";
+
+    document.getElementById("perm_edit_bookings").checked = isStaff || isAdmin;
+    document.getElementById("perm_cancel_bookings").checked = isAdmin;
+    document.getElementById("perm_edit_terms").checked = isAdmin;
+    document.getElementById("perm_manage_staff").checked = isAdmin;
+    document.getElementById("perm_export_reports").checked = isAdmin;
+
+    rbacModal.hidden = false;
+    document.body.style.overflow = "hidden";
+}
+
+function closeRbacModal() {
+    if (!rbacModal) return;
+    rbacModal.hidden = true;
+    document.body.style.overflow = "";
+}
+
+// Attach click listeners to all permission buttons
+document.querySelectorAll(".configure-role-btn, .edit-role-permissions-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const role = btn.dataset.role || "Staff";
+        const name = btn.dataset.name || null;
+        openRbacModal(role, name);
+    });
+});
+
+document.getElementById("rbacModalClose")?.addEventListener("click", closeRbacModal);
+document.getElementById("rbacModalCancel")?.addEventListener("click", closeRbacModal);
+
+document.getElementById("rbacModalSave")?.addEventListener("click", () => {
+    showToast("Permissions saved successfully!", "success");
+    closeRbacModal();
+});

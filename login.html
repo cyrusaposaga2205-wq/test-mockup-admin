@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Portal | Uncle Ron's Travel & Tours</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body class="portal-body">
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <span><i class="fa-solid fa-location-dot"></i> Cebu City, Philippines</span>
+            <span><i class="fa-solid fa-phone"></i> +63 912 345 6789</span>
+            <span><i class="fa-solid fa-envelope"></i> info@uncleronstravelandtours.com</span>
+        </div>
+        <div class="topbar-right">
+            <span class="follow-label">Follow Us:</span>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="header-transparent">
+        <div class="container navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/Uncle_rons_logo-removebg-preview.png" alt="Uncle Ron's Logo">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portal Landing Hero Section -->
+    <section class="portal-hero">
+        <div class="overlay"></div>
+
+        <div class="container portal-hero-container">
+
+            <!-- Hero Text Side -->
+            <div class="portal-hero-text">
+                <span class="sub-title">Internal Operations Portal</span>
+                <h1>WORKFORCE & MANAGEMENT ACCESS</h1>
+                <p>Welcome back! Sign in to manage bookings, adjust tour packages, review customer feedback, and generate real-time reports.</p>
+
+                <div class="portal-features-list">
+                    <div class="portal-feature-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <strong>Role-Based Access Control</strong>
+                            <span>Secure operational workspace for Staff and System Administrators.</span>
+                        </div>
+                    </div>
+                    <div class="portal-feature-item">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <div>
+                            <strong>Real-time Dashboard</strong>
+                            <span>Track guest bookings, payment statuses, and daily tour schedules.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Card Side -->
+            <div class="portal-card-wrapper">
+                <div class="portal-card">
+
+                    <div class="portal-card-header">
+                        <center><h2>Portal Sign In</h2></center>
+                        <center><p>Select your user account role to log in</p></center>
+                    </div>
+
+                    <!-- Role Selector Pills -->
+                    <div class="portal-role-tabs">
+                        <button type="button" class="role-tab active" data-role="staff" onclick="switchRole('staff')">
+                            <i class="fa-solid fa-user-gear"></i> Staff
+                        </button>
+                        <button type="button" class="role-tab" data-role="admin" onclick="switchRole('admin')">
+                            <i class="fa-solid fa-user-shield"></i> Admin
+                        </button>
+                    </div>
+
+                    <!-- Form -->
+                    <form class="portal-login-form" id="portalLoginForm" onsubmit="handlePortalLogin(event)">
+                        
+                        <div class="form-group">
+                            <label for="portalEmail">Work Email</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="portalEmail" placeholder="e.g. staff1@unclerons.com" value="staff1@unclerons.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="portalPassword">Password</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="portalPassword" placeholder="Enter password" value="staff123" required>
+                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility()">
+                                    <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-extras">
+                            <label class="remember-me">
+                                <input type="checkbox" id="rememberMe" checked> Remember me
+                            </label>
+                            <!-- Forgot Password Link with ID to toggle visibility -->
+                            <a href="javascript:void(0)" class="forgot-link" id="forgotPasswordLink" onclick="openForgotModal()">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="portal-submit-btn" id="loginSubmitBtn">
+                            Sign In<i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </form>
+
+                    <div class="portal-card-footer">
+                        <i class="fa-solid fa-circle-info"></i> For account access or password resets, contact system administration.
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="modal-overlay" id="forgotModal" hidden>
+        <div class="modal-card">
+            <button type="button" class="modal-close-btn" onclick="closeForgotModal()">&times;</button>
+            <div class="modal-icon warning">
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <h3>Forgot Password?</h3>
+            <p>If you forgot your password, please contact your system administrator to request a password reset.</p>
+            <button type="button" class="modal-primary-btn" onclick="closeForgotModal()">Got it</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2026 Uncle Ron's Travel and Tours. Staff & Admin System Operations.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        let selectedRole = 'staff';
+
+        const accounts = {
+            staff: {
+                email: 'staff1@unclerons.com',
+                password: 'staff123',
+                redirect: 'index.html'
+            },
+            admin: {
+                email: 'admin@unclerons.com',
+                password: 'admin123',
+                redirect: 'index.html'
+            }
+        };
+
+        function switchRole(role) {
+            selectedRole = role;
+            
+            document.querySelectorAll('.role-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.role === role);
+            });
+
+            const emailInput = document.getElementById('portalEmail');
+            const passInput = document.getElementById('portalPassword');
+            const submitBtn = document.getElementById('loginSubmitBtn');
+            const forgotLink = document.getElementById('forgotPasswordLink');
+
+            if (role === 'staff') {
+                emailInput.value = accounts.staff.email;
+                passInput.value = accounts.staff.password;
+                submitBtn.innerHTML = 'Sign In as Staff <i class="fa-solid fa-arrow-right"></i>';
+                // Show forgot password link for staff
+                forgotLink.style.display = 'inline';
+            } else {
+                emailInput.value = accounts.admin.email;
+                passInput.value = accounts.admin.password;
+                submitBtn.innerHTML = 'Sign In as Admin <i class="fa-solid fa-user-shield"></i>';
+                // Hide forgot password link/modal trigger for admin
+                forgotLink.style.display = 'none';
+                closeForgotModal(); // ensure modal is closed if open
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('portalPassword');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passInput.type = 'password';
+                eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        function handlePortalLogin(e) {
+            e.preventDefault();
+            window.location.href = accounts[selectedRole].redirect;
+        }
+
+        /* Modal Functions */
+        function openForgotModal() {
+            if (selectedRole === 'staff') {
+                document.getElementById('forgotModal').hidden = false;
+            }
+        }
+
+        function closeForgotModal() {
+            document.getElementById('forgotModal').hidden = true;
+        }
+
+        document.getElementById('forgotModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForgotModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
